@@ -1,0 +1,45 @@
+mat-form-field{
+  width: 90%;
+}
+
+mat-card{
+  width: 90%;
+  margin: 2%;
+
+}
+
+mat-card-header{
+  color: white;
+  background-color: midnightblue;
+  border-radius: 10px;
+}
+ mat-card-content{
+   padding-top: 2rem;
+   font-size: 14pt;
+ }
+
+.password-error {
+  background-color: red;
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+
+.password-match {
+  background-color: green;
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.registration-error{
+  background-color: black;
+  color: white;
+  border-radius: 7px;
+  width: 80%;
+  padding: 7px;
+  margin-bottom: 10px;
+}

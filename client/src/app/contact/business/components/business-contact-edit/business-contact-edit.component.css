@@ -1,0 +1,21 @@
+h3{
+  width: 80%;
+}
+mat-form-field{
+  width: 80%;
+  alignment: center;
+}
+
+mat-card{
+  width: 90%;
+  alignment: center;
+  margin: 2%;
+}
+
+button{
+  margin-left: 1rem;
+}
+
+address{
+  width: 90%;
+}

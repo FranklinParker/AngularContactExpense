@@ -1,0 +1,81 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-card-header>
+    <h3>Register</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <form (submit)="onSignup(signUpForm)"
+          #signUpForm="ngForm"
+          *ngIf="!isLoading"
+    (keyup)="onFormKeyUp()">
+      <mat-form-field>
+        <input matInput
+               name="firstName"
+               type="text"
+               [(ngModel)]="registrant.firstName"
+               #firstNameInput="ngModel"
+               required
+               placeholder="Enter First Name">
+        <mat-error *ngIf="firstNameInput.invalid">First Name Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="lastName"
+               type="text"
+               [(ngModel)]="registrant.lastName"
+               #lastNameInput="ngModel"
+               required
+               placeholder="Enter Last Name">
+        <mat-error *ngIf="lastNameInput.invalid">Last Name Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="email"
+               type="email"
+               [(ngModel)]="registrant.email"
+               #emailInput="ngModel"
+               required
+               email
+               placeholder="Enter Email">
+        <mat-error *ngIf="emailInput.invalid">Please enter valid email</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="password"
+               type="password"
+               #passwordInput="ngModel"
+               [(ngModel)]="registrant.password"
+               required
+               minlength="{{passwordMinLength}}"
+               placeholder="Enter Password">
+        <mat-error *ngIf="passwordInput.invalid">Password Must be {{passwordMinLength}} Chars</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="passwordMatch"
+               type="password"
+               #passwordMatchInput="ngModel"
+               [(ngModel)]="passwordMatch"
+               required
+               placeholder="Re-enter Password">
+        <mat-error *ngIf="passwordMatchInput.invalid">Matching Password Required</mat-error>
+      </mat-form-field>
+      <div class='password-error' *ngIf="passwordsDoNotMatch">
+        <label>Passwords do not match</label>
+      </div>
+      <div class='password-match' *ngIf="passwordsMatch">
+        <label>Passwords match</label>
+      </div>
+      <div class='registration-error' *ngIf="registrationError">
+        <label>{{registrationError}}</label>
+      </div>
+      <div>
+        <button mat-raised-button
+                [disabled]="signUpForm.invalid || passwordsDoNotMatch"
+                color="accent" type="submit">Register
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+
+</mat-card>

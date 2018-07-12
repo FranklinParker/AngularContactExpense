@@ -1,0 +1,36 @@
+
+mat-card{
+  width: 90%;
+  alignment: center;
+  margin: 2%;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-header-row{
+  background-color: black;
+}
+
+.mat-header-cell{
+  color: white;
+  font-size: 14pt;
+}
+.highlight{
+  background: #95f455;  /* #eff1f4; */
+}
+
+mat-form-field{
+  margin-left: 1rem;
+  width: 30%;
+}
+
+.mat-raised-button{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}

@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  <div fxShow.gt-sm="false">
+    <button mat-icon-button
+            (click)="onToggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="logged-in-user" *ngIf="loggedInUser">
+    <a routerLink="/" mat-button
+       class="welcome-header">Welcome {{displayName}}</a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxShow.gt-sm="true"
+       fxShow="false">
+    <ul *ngIf="!loggedInUser" fxLayout fxLayoutGap="10px" class="navigation-list-items">
+      <li><a routerLink="/login" mat-button
+             routerLinkActive="mat-accent">Login</a>
+      </li>
+    </ul>
+    <ul *ngIf="!loggedInUser"
+        fxLayout fxLayoutGap="10px"
+        class="navigation-list-items">
+      <li><a routerLink="/register" mat-button
+             routerLinkActive="mat-accent">Register</a>
+      </li>
+    </ul>
+    <ul  fxLayout fxLayoutGap="10px" class="navigation-list-items">
+      <li><a routerLink="/business/contact" mat-button
+             routerLinkActive="mat-accent">Business Contact</a>
+      </li>
+    </ul>
+    <ul *ngIf="loggedInUser" fxLayout fxLayoutGap="10px" class="navigation-list-items">
+      <li><a routerLink="/contact" mat-button
+             routerLinkActive="mat-accent">Contact</a>
+      </li>
+    </ul>
+    <ul *ngIf="loggedInUser" fxLayout fxLayoutGap="10px" class="navigation-list-items">
+      <li><a mat-stroked-button (click)="onLogout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>

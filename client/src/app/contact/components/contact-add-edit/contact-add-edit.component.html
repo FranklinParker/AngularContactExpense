@@ -1,0 +1,73 @@
+<mat-card>
+  <mat-card-header
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
+    <h3>{{headerMessage}}</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <form (submit)="onSubmit(contactForm)"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px"
+          #contactForm="ngForm">
+      <mat-form-field>
+        <input matInput
+               name="firstName"
+               type="text"
+               [(ngModel)]="contact.firstName"
+               #firstNameInput="ngModel"
+               required
+               placeholder="Enter First Name">
+        <mat-error *ngIf="firstNameInput.invalid">First Name Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="lastName"
+               type="text"
+               [(ngModel)]="contact.lastName"
+               #lastNameInput="ngModel"
+               required
+               placeholder="Enter Last Name">
+        <mat-error *ngIf="lastNameInput.invalid">Last Name Required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="email"
+               type="email"
+               [(ngModel)]="contact.email"
+               #emailInput="ngModel"
+               required
+               email
+               placeholder="Enter Email">
+        <mat-error *ngIf="emailInput.invalid">Please enter valid email</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="phone"
+               type="text"
+               [textMask]="{mask: mask}"
+               #phoneInput="ngModel"
+               [(ngModel)]="contact.phone"
+               required
+               placeholder="Enter Phone">
+        <mat-error *ngIf="phoneInput.invalid">
+          Phone is required
+        </mat-error>
+      </mat-form-field>
+      <mat-action-row>
+        <button mat-raised-button
+                [disabled]="contactForm.invalid"
+                color="accent" type="submit">Save
+        </button>
+        <button mat-raised-button
+                type="button"
+                *ngIf="isEditing"
+                (click)="onSetToNewContact()"
+                color="warn" >Add New
+        </button>
+      </mat-action-row>
+
+    </form>
+  </mat-card-content>
+</mat-card>

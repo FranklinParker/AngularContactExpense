@@ -1,0 +1,6 @@
+{
+    "dbUrl": "mongodb://localhost:27017/ngrx_db",
+    "JWT_SECRET":"ghgghghgk676767",
+    "EXPIRE_JWT_SECONDS": 1800
+
+}  

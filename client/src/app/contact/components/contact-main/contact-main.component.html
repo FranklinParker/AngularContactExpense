@@ -1,0 +1,11 @@
+<mat-tab-group [(selectedIndex)]="selectedTabIndex">
+  <mat-tab label="Contacts">
+    <app-contact-list (editContactEvent)="onEditContact($event)"></app-contact-list>
+  </mat-tab>
+  <mat-tab label="Add/Edit Contact">
+    <app-contact [contact]="contact"
+                 (setToNewContactEvent)="onSetToNewContact()"></app-contact>
+  </mat-tab>
+</mat-tab-group>
+
+
