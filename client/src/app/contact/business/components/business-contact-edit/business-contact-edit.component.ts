@@ -43,6 +43,15 @@ export class BusinessContactEditComponent implements OnInit {
     this.form.setControl('addresses', addressFormArray);
   }
 
+  onAddNew(){
+    const address:Address ={
+      street: 'new st',
+        city: 'new city'
+    };
+    const formCntl = this.fb.group(address);
+    (this.form.get('addresses') as FormArray).push(formCntl);
+  }
+
   onSave() {
     console.log('form', this.form.value);
   }
