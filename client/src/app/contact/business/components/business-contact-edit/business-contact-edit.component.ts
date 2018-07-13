@@ -55,8 +55,8 @@ export class BusinessContactEditComponent implements OnInit {
     (this.form.get('contacts') as FormArray).push(formCntl);
   }
 
-  onSave() {
-    this.contractorService.saveContractor(this.form.value);
+  async onSave() {
+    await this.contractorService.saveContractor(this.form.value);
 
   }
 

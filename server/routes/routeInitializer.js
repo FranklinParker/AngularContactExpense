@@ -4,6 +4,9 @@ const testController = require('../controller/testController');
 const userController = require('../controller/userController');
 const contactController = require('../controller/contactController');
 
+const contractorController = require('../controller/contractorController');
+
+
 
 const checkAuth = require('../auth/checkAuth');
 /**
@@ -43,6 +46,7 @@ module.exports.initRouter = (app) => {
   app.put('/api/contact',checkAuth, apiHandler(contactController.updateContact));
   app.get('/api/contact',checkAuth, apiHandler(contactController.getContacts));
 
+  app.post('/api/contractor', apiHandler(contractorController.saveNewContactor));
   app.get('/api/test/:id', apiHandler(testController.getData));
 	app.get('/api/test',checkAuth, apiHandler(testController.getData));
 	app.get('/api/testSecure', checkAuth, apiHandler(testController.getDataSecure));
