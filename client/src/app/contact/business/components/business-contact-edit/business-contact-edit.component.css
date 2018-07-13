@@ -19,3 +19,7 @@ button{
 address{
   width: 90%;
 }
+
+mat-accordion{
+  width: 90%;
+}

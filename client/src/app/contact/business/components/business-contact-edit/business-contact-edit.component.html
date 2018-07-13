@@ -24,19 +24,24 @@
                type="text"
                placeholder="Enter Last Name">
       </mat-form-field>
-      <div formArrayName="addresses">
-        <mat-card
-          *ngFor="let address of addresses.controls; let i=index"
-          [formGroupName]="i">
-          <mat-form-field>
-            <input matInput
-                   name="addressStreet"
-                   formControlName="street"
-                   type="text"
-                   placeholder="Enter Street">
-          </mat-form-field>
-        </mat-card>
-      </div>
+      <mat-accordion formArrayName="addresses">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <label>Addresses</label>
+          </mat-expansion-panel-header>
+          <mat-card
+            *ngFor="let address of addresses.controls; let i=index"
+            [formGroupName]="i">
+            <mat-form-field>
+              <input matInput
+                     name="addressStreet"
+                     formControlName="street"
+                     type="text"
+                     placeholder="Enter Street">
+            </mat-form-field>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
       <button mat-raised-button
               color="accent"
               type="button" (click)="onSave()">Save
