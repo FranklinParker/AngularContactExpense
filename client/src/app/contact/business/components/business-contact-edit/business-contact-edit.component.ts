@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
 import {Address} from "../../models/address";
 import {ContactPerson} from "../../models/contactPerson";
+import {ContractorService} from "../../service/contractor.service";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -19,7 +20,8 @@ export class BusinessContactEditComponent implements OnInit {
     description: 'Repair'
   }];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private contractorService: ContractorService,
+              private fb: FormBuilder) {
 
   }
 
@@ -54,7 +56,8 @@ export class BusinessContactEditComponent implements OnInit {
   }
 
   onSave() {
-    console.log('form', this.form.value);
+    this.contractorService.saveContractor(this.form.value);
+
   }
 
 

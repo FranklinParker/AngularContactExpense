@@ -1,5 +1,5 @@
 export interface ContactPerson {
-  name: string,
-  description:string
+  name: string;
+  description:string;
 
 }
