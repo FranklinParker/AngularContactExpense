@@ -27,10 +27,14 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <label>Contacts</label>
-            <button class="button-right"
-                     mat-raised-button (click)="onAddNew()">
-              Add new</button>
+
           </mat-expansion-panel-header>
+          <mat-action-row>
+            <button class="button-right"
+                    mat-raised-button (click)="onAddNew()">
+              Add new
+            </button>
+          </mat-action-row>
           <mat-card
             *ngFor="let conact of contacts.controls; let i=index"
             [formGroupName]="i">
