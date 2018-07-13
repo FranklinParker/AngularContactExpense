@@ -12,8 +12,15 @@ mat-card{
   margin: 2%;
 }
 
-button{
+.button-right {
+  horiz-align: right;
+}
+
+
+label{
   margin-left: 1rem;
+  margin-top: 1rem;
+  vertical-align: center;
 }
 
 address{

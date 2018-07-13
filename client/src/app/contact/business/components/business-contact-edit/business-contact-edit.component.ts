@@ -16,7 +16,7 @@ export class BusinessContactEditComponent implements OnInit {
 
   contactList: ContactPerson[] = [{
     name: 'Joe Brown',
-    desription: 'Repair'
+    description: 'Repair'
   }];
 
   constructor(private fb: FormBuilder) {
@@ -47,7 +47,7 @@ export class BusinessContactEditComponent implements OnInit {
   onAddNew(){
     const contact:ContactPerson ={
       name: 'Jay Jones',
-      desription: 'Helpfull'
+      description: 'Helpfull'
     };
     const formCntl = this.fb.group(contact);
     (this.form.get('contacts') as FormArray).push(formCntl);
