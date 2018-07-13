@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
 import {Address} from "../../models/address";
+import {ContactPerson} from "../../models/contactPerson";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -13,9 +14,9 @@ import {Address} from "../../models/address";
 export class BusinessContactEditComponent implements OnInit {
   form: FormGroup;
 
-  addressLines: Address[] = [{
-    street: 'main st',
-    city: 'boston'
+  contactList: ContactPerson[] = [{
+    name: 'Joe Brown',
+    desription: 'Repair'
   }];
 
   constructor(private fb: FormBuilder) {
@@ -26,30 +27,30 @@ export class BusinessContactEditComponent implements OnInit {
 
 
     this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      addresses: this.fb.array([])
+      companyName: ['', Validators.required],
+      street: ['', Validators.required],
+      contacts: this.fb.array([])
     });
-    this.setAddresses();
+    this.setContacts();
   }
 
-  get addresses(): FormArray {
-    return this.form.get('addresses') as FormArray;
+  get contacts(): FormArray {
+    return this.form.get('contacts') as FormArray;
   }
 
-  setAddresses() {
-    const addressFGs = this.addressLines.map(address => this.fb.group(address));
-    const addressFormArray = this.fb.array(addressFGs);
-    this.form.setControl('addresses', addressFormArray);
+  setContacts() {
+    const contactFGs = this.contactList.map(address => this.fb.group(address));
+    const contactFormArray = this.fb.array(contactFGs);
+    this.form.setControl('contacts', contactFormArray);
   }
 
   onAddNew(){
-    const address:Address ={
-      street: 'new st',
-        city: 'new city'
+    const contact:ContactPerson ={
+      name: 'Jay Jones',
+      desription: 'Helpfull'
     };
-    const formCntl = this.fb.group(address);
-    (this.form.get('addresses') as FormArray).push(formCntl);
+    const formCntl = this.fb.group(contact);
+    (this.form.get('contacts') as FormArray).push(formCntl);
   }
 
   onSave() {

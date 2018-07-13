@@ -12,32 +12,39 @@
           autocomplete="off">
       <mat-form-field>
         <input matInput
-               name="firstName"
-               formControlName="firstName"
+               name="companyName"
+               formControlName="companyName"
                type="text"
-               placeholder="Enter First Name">
+               placeholder="Enter Company Name">
       </mat-form-field>
       <mat-form-field>
         <input matInput
-               name="lastName"
-               formControlName="lastName"
+               name="street"
+               formControlName="street"
                type="text"
-               placeholder="Enter Last Name">
+               placeholder="Enter Street">
       </mat-form-field>
-      <mat-accordion formArrayName="addresses">
+      <mat-accordion formArrayName="contacts">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <label>Addresses</label>
+            <label>Contacts</label>
           </mat-expansion-panel-header>
           <mat-card
-            *ngFor="let address of addresses.controls; let i=index"
+            *ngFor="let conact of contacts.controls; let i=index"
             [formGroupName]="i">
             <mat-form-field>
               <input matInput
-                     name="addressStreet"
-                     formControlName="street"
+                     name="name"
+                     formControlName="name"
                      type="text"
-                     placeholder="Enter Street">
+                     placeholder="Enter Name">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput
+                     name="description"
+                     formControlName="descriptoin"
+                     type="text"
+                     placeholder="Enter Description">
             </mat-form-field>
           </mat-card>
         </mat-expansion-panel>

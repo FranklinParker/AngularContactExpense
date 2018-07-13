@@ -22,4 +22,6 @@ address{
 
 mat-accordion{
   width: 90%;
+  alignment: center;
+
 }
