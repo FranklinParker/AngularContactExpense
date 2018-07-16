@@ -10,8 +10,8 @@ const ContractorSchema = new Schema({
 	contacts:[
 		{name: String},
 		{description: String}
-
 	],
+	servicesProvided:[String]
 });
 const Contractor = mongoose.model('Contractor', ContractorSchema);
 
