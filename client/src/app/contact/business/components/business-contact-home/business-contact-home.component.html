@@ -1,1 +1,9 @@
+<button mat-button [matMenuTriggerFor]="menu">Navigation Menu</button>
+<mat-menu #menu="matMenu">
+  <button (click)="onGoto('/contact')"
+      mat-menu-item>Contact</button>
+  <button (click)="onGoto('/')"
+          mat-menu-item>Home</button>
+  
+</mat-menu>
 <app-business-contact-edit></app-business-contact-edit>
