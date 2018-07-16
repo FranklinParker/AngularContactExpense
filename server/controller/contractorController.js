@@ -7,9 +7,9 @@ const Contractor = require('../models/Contractor').Contractor;
  * @param params
  * @returns {Promise<*>}
  */
-const saveNewContactor = async (params) => {
+const saveNewContractor = async (params) => {
 	const contractorData = params.actionData;
-
+	console.log('contractorData', contractorData);
 	try {
 		const contactSearch = await Contractor.findOne({companyName: contractorData.companyName });
 		console.log('contactSearch', contactSearch);
@@ -106,7 +106,7 @@ const getContacts = async (params)=>{
 
 
 module.exports ={
-	saveNewContactor,
+	saveNewContractor,
 	updateContact,
 	getContacts
 }
