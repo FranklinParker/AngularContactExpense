@@ -28,7 +28,6 @@ export class ContactMainComponent implements OnInit {
   async ngOnInit() {
     this.store.dispatch(new LoadAllContacts());
 
-    //await this.contactService.getContacts(1, 5);
 
   }
 

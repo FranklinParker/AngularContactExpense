@@ -23,6 +23,15 @@
                type="text"
                placeholder="Enter Street">
       </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Services Provided"
+                    formArrayName="servicesProvided"
+                    multiple>
+          <mat-option
+            *ngFor="let service of serviceList"
+        [value]="service">{{service}}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-accordion formArrayName="contacts">
         <mat-expansion-panel>
           <mat-expansion-panel-header>

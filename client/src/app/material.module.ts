@@ -8,7 +8,7 @@ import {
   MatInputModule,
   MatListModule, MatMenuModule,
   MatPaginatorModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
   MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule,
   MatToolbarModule
@@ -33,7 +33,8 @@ import {LayoutModule} from "@angular/cdk/layout";
     MatTableModule,
     MatTabsModule,
     MatSortModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
 
   declarations: []

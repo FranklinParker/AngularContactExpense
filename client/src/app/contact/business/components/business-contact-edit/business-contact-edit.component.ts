@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {ContactPerson} from "../../models/contactPerson";
 import {ContractorService} from "../../service/contractor.service";
 import {MatSnackBar} from "@angular/material";
@@ -13,6 +13,13 @@ import {MatSnackBar} from "@angular/material";
 
 export class BusinessContactEditComponent implements OnInit {
   form: FormGroup;
+  serviceList: string[] =[
+    'Electrician',
+    'Plumber',
+    'House Cleaning'
+  ];
+
+
 
   contactList: ContactPerson[] = [{
     name: 'Joe Brown',
@@ -23,22 +30,31 @@ export class BusinessContactEditComponent implements OnInit {
               private fb: FormBuilder,
               private snackBar: MatSnackBar) {
 
+    this.form = this.fb.group({
+      companyName: ['', Validators.required],
+      street: ['', Validators.required],
+      contacts: this.fb.array([]),
+      servicesProvided : this.fb.array([])
+    });
+
+    const servicesProvided: FormArray = this.form.get('servicesProvided') as FormArray;
+    this.serviceList.forEach((service)=>
+      servicesProvided.push(this.fb.control(service)));
+    console.log('servicesProvided', servicesProvided);
+
   }
 
   ngOnInit() {
 
 
-    this.form = this.fb.group({
-      companyName: ['', Validators.required],
-      street: ['', Validators.required],
-      contacts: this.fb.array([])
-    });
     this.setContacts();
   }
 
   get contacts(): FormArray {
     return this.form.get('contacts') as FormArray;
   }
+
+
 
   setContacts() {
     const contactFGs = this.contactList.map(address => this.fb.group(address));
