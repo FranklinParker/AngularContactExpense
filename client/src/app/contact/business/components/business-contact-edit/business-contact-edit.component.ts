@@ -11,7 +11,6 @@ import {MatSnackBar} from "@angular/material";
 })
 
 
-
 export class BusinessContactEditComponent implements OnInit {
   form: FormGroup;
 
@@ -47,8 +46,8 @@ export class BusinessContactEditComponent implements OnInit {
     this.form.setControl('contacts', contactFormArray);
   }
 
-  onAddNew(){
-    const contact:ContactPerson ={
+  onAddNew() {
+    const contact: ContactPerson = {
       name: 'Jay Jones',
       description: 'Helpfull'
     };
@@ -60,7 +59,7 @@ export class BusinessContactEditComponent implements OnInit {
     const result = await this.contractorService.saveContractor(this.form.value);
     if (result.success) {
 
-     // this.store.dispatch(new NewContactSaved({ contact: result.record}));
+      // this.store.dispatch(new NewContactSaved({ contact: result.record}));
       this.snackBar.open('New Contact Saved!', '', {
         duration: 5000
       });
@@ -68,6 +67,7 @@ export class BusinessContactEditComponent implements OnInit {
       this.snackBar.open(result.message, 'Error Saving Contact', {
         duration: 9000
       });
+    }
   }
 
 

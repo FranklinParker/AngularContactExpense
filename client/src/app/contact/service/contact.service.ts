@@ -12,7 +12,6 @@ export class ContactService {
   getUrl = environment.apiUrl + 'contact';
   postUrl = environment.apiUrl + 'contact';
   contactList: Contact[] = [];
-  private contactListSubject = new Subject<{ numberRecords: number, contacts: Contact[] }>();
 
 
   constructor(private http: HttpClient) {
@@ -47,11 +46,7 @@ export class ContactService {
             };
           })).toPromise();
       this.contactList = data.contacts;
-      this.contactListSubject.next(
-        {
-          numberRecords: data.numberRecords,
-          contacts: this.contactList
-        });
+
     } catch (e) {
       console.log('error getting contacts', e);
     }
@@ -94,14 +89,7 @@ export class ContactService {
 
   }
 
-  /**
-   * listens to changes in the contact list subject
-   *
-   * @returns {Observable<Contact[]>}
-   */
-  getContactListObservable() {
-    return this.contactListSubject.asObservable();
-  }
+
 
 
   /**
@@ -141,12 +129,7 @@ export class ContactService {
           })).toPromise();
       console.log('contact new save result', result);
       if (result.success) {
-        this.contactList.push(result.record);
-        this.contactListSubject.next(
-          {
-            numberRecords: result.numberRecords,
-            contacts: this.contactList
-          });
+
       }
       return result;
     } catch (e) {
