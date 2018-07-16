@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
-import {Address} from "../../models/address";
 import {ContactPerson} from "../../models/contactPerson";
 import {ContractorService} from "../../service/contractor.service";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -21,7 +21,8 @@ export class BusinessContactEditComponent implements OnInit {
   }];
 
   constructor(private contractorService: ContractorService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private snackBar: MatSnackBar) {
 
   }
 
@@ -56,8 +57,17 @@ export class BusinessContactEditComponent implements OnInit {
   }
 
   async onSave() {
-    await this.contractorService.saveContractor(this.form.value);
+    const result = await this.contractorService.saveContractor(this.form.value);
+    if (result.success) {
 
+     // this.store.dispatch(new NewContactSaved({ contact: result.record}));
+      this.snackBar.open('New Contact Saved!', '', {
+        duration: 5000
+      });
+    } else {
+      this.snackBar.open(result.message, 'Error Saving Contact', {
+        duration: 9000
+      });
   }
 
 
