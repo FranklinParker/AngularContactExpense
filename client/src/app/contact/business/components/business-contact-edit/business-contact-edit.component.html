@@ -16,13 +16,43 @@
                type="text"
                placeholder="Enter Company Name">
       </mat-form-field>
-      <mat-form-field>
-        <input matInput
-               name="street"
-               formControlName="street"
-               type="text"
-               placeholder="Enter Street">
-      </mat-form-field>
+      <mat-accordion formGroupName="address">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <label>Address</label>
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput
+                   name="street"
+                   formControlName="street"
+                   type="text"
+                   placeholder="Enter Address">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput
+                   name="city"
+                   formControlName="city"
+                   type="text"
+                   placeholder="Enter City">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput
+                   name="state"
+                   formControlName="state"
+                   type="text"
+                   placeholder="Enter State">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput
+                   name="zip"
+                   formControlName="zip"
+                   type="text"
+                   placeholder="Enter zip">
+          </mat-form-field>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
       <mat-form-field>
         <mat-select placeholder="Services Provided"
                     formArrayName="servicesProvided"

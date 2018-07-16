@@ -32,7 +32,12 @@ export class BusinessContactEditComponent implements OnInit {
 
     this.form = this.fb.group({
       companyName: ['', Validators.required],
-      street: ['', Validators.required],
+      address: this.fb.group({ // <-- the child FormGroup
+        street: '',
+        city: '',
+        state: '',
+        zip: ''
+      }),
       contacts: this.fb.array([]),
       servicesProvided : this.fb.array([])
     });
