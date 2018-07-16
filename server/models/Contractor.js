@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const ContractorSchema = new Schema({
 	companyName: {type: String, required: true},
+	servicesProvided:[String],
 	address: {
 		street: {type: String},
 		city: {type: String},
@@ -13,9 +14,10 @@ const ContractorSchema = new Schema({
 	},
 	contacts:[
 		{name: String},
-		{description: String}
-	],
-	servicesProvided:[String]
+		{description: String},
+		{phone: String},
+		{email: String}
+	]
 });
 
 const Contractor = mongoose.model('Contractor', ContractorSchema);

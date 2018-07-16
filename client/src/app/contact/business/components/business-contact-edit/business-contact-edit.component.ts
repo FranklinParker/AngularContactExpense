@@ -23,7 +23,9 @@ export class BusinessContactEditComponent implements OnInit {
 
   contactList: ContactPerson[] = [{
     name: 'Joe Brown',
-    description: 'Repair'
+    description: 'Repair',
+    phone: '',
+    email: ''
   }];
 
   constructor(private contractorService: ContractorService,
@@ -62,7 +64,7 @@ export class BusinessContactEditComponent implements OnInit {
 
 
   setContacts() {
-    const contactFGs = this.contactList.map(address => this.fb.group(address));
+    const contactFGs = this.contactList.map(contact => this.fb.group(contact));
     const contactFormArray = this.fb.array(contactFGs);
     this.form.setControl('contacts', contactFormArray);
   }
@@ -70,7 +72,9 @@ export class BusinessContactEditComponent implements OnInit {
   onAddNew() {
     const contact: ContactPerson = {
       name: 'Jay Jones',
-      description: 'Helpfull'
+      description: 'Helpfull',
+      email: '',
+      phone:''
     };
     const formCntl = this.fb.group(contact);
     (this.form.get('contacts') as FormArray).push(formCntl);
