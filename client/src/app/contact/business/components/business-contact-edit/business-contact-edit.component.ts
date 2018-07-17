@@ -66,7 +66,7 @@ export class BusinessContactEditComponent implements OnInit {
   private setContractorForm(){
     const companyNameCntrl:FormControl = this.fb.control(this.contractor.companyName);
     this.form.setControl('companyName', companyNameCntrl);
-    
+
     const contactFGs = this.contractor.contacts.map(contact => this.fb.group(contact));
     const contactFormArray = this.fb.array(contactFGs);
     this.form.setControl('contacts', contactFormArray);
