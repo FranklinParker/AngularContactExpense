@@ -40,28 +40,28 @@ const saveNewContractor = async (params) => {
 
 
 /**
- * update a contact
+ * update a contractor
  *
  *
  * @param params
  * @returns {Promise<*>}
  */
-const updateContact = async (params) => {
-	const contactData = params.actionData;
+const updateContractor = async (params) => {
+	const contractorData = params.actionData;
 
 	try {
 
 		const contact = new Contact({
-			firstName: contactData.firstName,
-			lastName: contactData.lastName,
-			email: contactData.email,
-			phone: contactData.phone,
-			_id: contactData.id
+			firstName: contractorData.firstName,
+			lastName: contractorData.lastName,
+			email: contractorData.email,
+			phone: contractorData.phone,
+			_id: contractorData.id
 		});
-		const contactRec =  await Contact.updateOne({_id: contactData.id}, contact);
+		const contactorRec =  await Contact.updateOne({_id: contractorData.id}, contractor);
 		return {
 			success: true,
-			record: contactRec
+			record: contactorRec
 		};
 	} catch (e) {
 		return {
@@ -107,6 +107,6 @@ const getAllContractors = async (params)=>{
 
 module.exports ={
 	saveNewContractor,
-	updateContact,
+	updateContractor,
 	getAllContractors
 }

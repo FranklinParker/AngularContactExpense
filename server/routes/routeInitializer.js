@@ -7,7 +7,6 @@ const contactController = require('../controller/contactController');
 const contractorController = require('../controller/contractorController');
 
 
-
 const checkAuth = require('../auth/checkAuth');
 /**
  * method to parse all request objects and send to a method
@@ -42,15 +41,16 @@ module.exports.initRouter = (app) => {
 	app.post('/api/register', apiHandler(userController.registerUser));
 	app.post('/api/login', apiHandler(userController.login));
 	//
-	app.post('/api/contact',checkAuth, apiHandler(contactController.saveContact));
-  app.put('/api/contact',checkAuth, apiHandler(contactController.updateContact));
-  app.get('/api/contact',checkAuth, apiHandler(contactController.getContacts));
+	app.post('/api/contact', checkAuth, apiHandler(contactController.saveContact));
+	app.put('/api/contact', checkAuth, apiHandler(contactController.updateContact));
+	app.get('/api/contact', checkAuth, apiHandler(contactController.getContacts));
 
-  app.post('/api/contractor', apiHandler(contractorController.saveNewContractor));
+	app.post('/api/contractor', apiHandler(contractorController.saveNewContractor));
 	app.get('/api/contractor', apiHandler(contractorController.getAllContractors));
+	app.put('/api/contractor', apiHandler(contractorController.updateContractor));
 
 	app.get('/api/test/:id', apiHandler(testController.getData));
-	app.get('/api/test',checkAuth, apiHandler(testController.getData));
+	app.get('/api/test', checkAuth, apiHandler(testController.getData));
 	app.get('/api/testSecure', checkAuth, apiHandler(testController.getDataSecure));
 	app.post('/api/testpost', checkAuth, apiHandler(testController.getDataPost));
 
