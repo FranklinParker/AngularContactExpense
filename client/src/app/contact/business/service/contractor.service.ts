@@ -61,7 +61,7 @@ export class ContractorService {
               contractor: contractorData.records.map(record => {
                 return {
                   id: record._id,
-                  contractorName: record.companyName,
+                  companyName: record.companyName,
                   servicesProvided: record.servicesProvided,
                   address: record.address,
                   contacts: record.contacts

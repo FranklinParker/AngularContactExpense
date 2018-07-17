@@ -20,9 +20,8 @@ export class BusinessContactListComponent implements OnInit {
   contactsPerPage = 5;
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
-
+  selectedId: string;
   contractorList: Contractor[] = [];
-  filteredContactList: Contact[] = [];
   dataSource = new MatTableDataSource<Contractor>([]);
   displayedColumns = ['companyName','servicesProvided'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -84,7 +83,7 @@ export class BusinessContactListComponent implements OnInit {
    * @param {contractor} contact
    */
   rowClicked(contractor:Contractor){
-    //this.selectedContactId = contact.id;
+    this.selectedId = contractor.id;
   }
 
   /**
