@@ -11,9 +11,9 @@ const saveNewContractor = async (params) => {
 	const contractorData = params.actionData;
 	console.log('contractorData', contractorData);
 	try {
-		const contactSearch = await Contractor.findOne({companyName: contractorData.companyName });
+		const contactSearch = await Contractor.findOne({companyName: contractorData.companyName});
 		console.log('contactSearch', contactSearch);
-		if(contactSearch){
+		if (contactSearch) {
 			return {
 				success: false,
 				message: 'This contractor name  exists'
@@ -48,14 +48,13 @@ const saveNewContractor = async (params) => {
  */
 const updateContractor = async (params) => {
 	const contractorData = params.actionData;
-	console.log('contractorData', contractorData);
-
+	contractorData._id = contractorData.id;
 	try {
 
 		const contractor = new Contractor(
 			contractorData
 		);
-		const contractorRec =  await Contractor.updateOne({_id: contractorData.id}, contractor);
+		const contractorRec = await Contractor.updateOne({_id: contractorData.id}, contractor);
 		return {
 			success: true,
 			record: contractorRec
@@ -75,7 +74,7 @@ const updateContractor = async (params) => {
  * @returns {Promise<*>}
  */
 
-const getAllContractors = async (params)=>{
+const getAllContractors = async (params) => {
 	console.log('getAllContractors - params', params);
 	const pageSize = params.query.pageSize;
 	const currentPage = params.query.currentPage;
@@ -102,7 +101,7 @@ const getAllContractors = async (params)=>{
 }
 
 
-module.exports ={
+module.exports = {
 	saveNewContractor,
 	updateContractor,
 	getAllContractors

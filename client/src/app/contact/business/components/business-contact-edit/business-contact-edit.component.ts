@@ -116,7 +116,9 @@ export class BusinessContactEditComponent implements OnInit {
    * @returns {Promise<void>}
    */
   private async saveNewContractor(){
-    const result = await this.contractorService.saveContractor(this.form.value);
+    const contractor: Contractor = this.form.value;
+
+    const result = await this.contractorService.saveContractor(contractor);
     if (result.success) {
 
       // this.store.dispatch(new NewContactratorSaved({ contact: result.record}));
@@ -136,7 +138,9 @@ export class BusinessContactEditComponent implements OnInit {
    * @returns {Promise<void>}
    */
   private async updateContractor(){
-    const result = await this.contractorService.updateExistingContractor(this.form.value);
+    const contractor: Contractor = this.form.value;
+    contractor.id = this.contractor.id;
+    const result = await this.contractorService.updateExistingContractor(contractor);
     if (result.success) {
 
       // this.store.dispatch(new NewContactratorSaved({ contact: result.record}));
