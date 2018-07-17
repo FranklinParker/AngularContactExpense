@@ -7,6 +7,7 @@ import {AppState} from "../../../../reducers";
 import {Store, select} from "@ngrx/store";
 import {getSelectedContractor} from "../../contractor.selector";
 import {tap} from 'rxjs/operators';
+import {Contractor} from "../../models/contractor";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -22,7 +23,7 @@ export class BusinessContactEditComponent implements OnInit {
     'Plumber',
     'House Cleaning'
   ];
-  @Input() contractor;
+  contractor: Contractor;
 
   constructor(private contractorService: ContractorService,
               private fb: FormBuilder,
@@ -50,30 +51,30 @@ export class BusinessContactEditComponent implements OnInit {
 
   ngOnInit() {
     this.store
-      .select(getSelectedContractor).subscribe(contractor=>{
-        console.log('contractor',contractor);
+      .select(getSelectedContractor).subscribe(contractor => {
+      console.log('contractor', contractor);
+      this.contractor = contractor;
+      this.setContactForm()
     });
 
 
-    this.setContacts();
-    this.setAddress();
   }
 
   get contacts(): FormArray {
     return this.form.get('contacts') as FormArray;
   }
 
-
-  setContacts() {
+  private setContactForm(){
     const contactFGs = this.contractor.contacts.map(contact => this.fb.group(contact));
     const contactFormArray = this.fb.array(contactFGs);
     this.form.setControl('contacts', contactFormArray);
-  }
 
-  setAddress() {
     const addressGroup: FormGroup = this.fb.group(this.contractor.address);
     this.form.setControl('address', addressGroup);
+
   }
+
+
 
   onAddNew() {
     const contact: ContactPerson = {
