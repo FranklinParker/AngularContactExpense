@@ -45,7 +45,6 @@ export class BusinessContactEditComponent implements OnInit {
     const servicesProvided: FormArray = this.form.get('servicesProvided') as FormArray;
     this.serviceList.forEach((service) =>
       servicesProvided.push(this.fb.control(service)));
-    console.log('servicesProvided', servicesProvided);
 
   }
 
@@ -54,7 +53,7 @@ export class BusinessContactEditComponent implements OnInit {
       .select(getSelectedContractor).subscribe(contractor => {
       console.log('contractor', contractor);
       this.contractor = contractor;
-      this.setContactForm()
+      this.setContractorForm()
     });
 
 
@@ -64,7 +63,10 @@ export class BusinessContactEditComponent implements OnInit {
     return this.form.get('contacts') as FormArray;
   }
 
-  private setContactForm(){
+  private setContractorForm(){
+    const companyNameCntrl:FormControl = this.fb.control(this.contractor.companyName);
+
+    this.form.setControl('companyName', companyNameCntrl);
     const contactFGs = this.contractor.contacts.map(contact => this.fb.group(contact));
     const contactFormArray = this.fb.array(contactFGs);
     this.form.setControl('contacts', contactFormArray);
