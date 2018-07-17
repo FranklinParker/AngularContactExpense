@@ -16,8 +16,8 @@ export class BusinessContactListComponent implements OnInit {
   filterAll:String;
   filterCompanyName: string;
   isLoading = false;
-  totalContacts = 10;
-  contactsPerPage = 5;
+  totalRecords = 10;
+  rowsPerPage = 5;
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
   selectedId: string;
@@ -59,7 +59,7 @@ export class BusinessContactListComponent implements OnInit {
     this.contractorList = null;
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
-    this.contactsPerPage = pageData.pageSize;
+    this.rowsPerPage = pageData.pageSize;
     this.getNewPage(pageData.pageIndex, pageData.pageSize);
 
   }
@@ -71,7 +71,7 @@ export class BusinessContactListComponent implements OnInit {
         console.log('selectContractorPage', contractorPage);
         this.contractorList = contractorPage.contractors;
         this.dataSource.data = this.contractorList;
-        this.totalContacts = contractorPage.totalRecords;
+        this.totalRecords = contractorPage.totalRecords;
 
       });
 
