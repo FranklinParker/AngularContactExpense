@@ -19,6 +19,9 @@
       <mat-form-field>
         <mat-select placeholder="Services Provided"
                     formArrayName="servicesProvided"
+                    [(ngModel)]="servicesProvided"
+                    [ngModelOptions]="{standalone: true}"
+                    [compareWith]="selectedServiceProvided"
                     multiple>
           <mat-option
             *ngFor="let service of serviceList"

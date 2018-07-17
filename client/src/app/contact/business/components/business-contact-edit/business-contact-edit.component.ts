@@ -24,6 +24,7 @@ export class BusinessContactEditComponent implements OnInit {
     'House Cleaning'
   ];
   contractor: Contractor;
+  servicesProvided: string [];
 
   constructor(private contractorService: ContractorService,
               private fb: FormBuilder,
@@ -51,7 +52,6 @@ export class BusinessContactEditComponent implements OnInit {
   ngOnInit() {
     this.store
       .select(getSelectedContractor).subscribe(contractor => {
-      console.log('contractor', contractor);
       this.contractor = contractor;
       this.setContractorForm()
     });
@@ -65,17 +65,29 @@ export class BusinessContactEditComponent implements OnInit {
 
   private setContractorForm(){
     const companyNameCntrl:FormControl = this.fb.control(this.contractor.companyName);
-
     this.form.setControl('companyName', companyNameCntrl);
+    
     const contactFGs = this.contractor.contacts.map(contact => this.fb.group(contact));
     const contactFormArray = this.fb.array(contactFGs);
     this.form.setControl('contacts', contactFormArray);
 
     const addressGroup: FormGroup = this.fb.group(this.contractor.address);
     this.form.setControl('address', addressGroup);
+    this.servicesProvided = this.contractor.servicesProvided;
 
   }
 
+  /**
+   *
+   *
+   *
+   * @param {string} a
+   * @param {string} b
+   * @returns {boolean}
+   */
+  selectedServiceProvided(a: string,b:string){
+    return a === b;
+  }
 
 
   onAddNew() {
