@@ -84,7 +84,7 @@ export class BusinessContactEditComponent implements OnInit {
     const result = await this.contractorService.saveContractor(this.form.value);
     if (result.success) {
 
-      // this.store.dispatch(new NewContactSaved({ contact: result.record}));
+      // this.store.dispatch(new NewContactratorSaved({ contact: result.record}));
       this.snackBar.open('New Contact Saved!', '', {
         duration: 5000
       });

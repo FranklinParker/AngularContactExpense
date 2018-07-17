@@ -72,28 +72,28 @@ const updateContact = async (params) => {
 
 };
 /**
- * get a list of contacts
+ * get a list of contractors
  *
  * @param params
  * @returns {Promise<*>}
  */
 
-const getContacts = async (params)=>{
-	console.log('getContacts - params', params);
+const getAllContractors = async (params)=>{
+	console.log('getAllContractors - params', params);
 	const pageSize = params.query.pageSize;
 	const currentPage = params.query.currentPage;
-	const contactQuery = Contact.find();
-	const count = await Contact.count();
+	const contactQuery = Contractor.find();
+	const count = await Contractor.count();
 	if (pageSize && currentPage) {
 		contactQuery.skip(+pageSize * (+currentPage - 1))
 			.limit(+pageSize);
 	}
 	try {
-		const contactRecords = await contactQuery;
+		const contractorRecords = await contactQuery;
 
 		return {
 			success: true,
-			records: contactRecords,
+			records: contractorRecords,
 			numberRecords: count
 		};
 	} catch (e) {
@@ -108,5 +108,5 @@ const getContacts = async (params)=>{
 module.exports ={
 	saveNewContractor,
 	updateContact,
-	getContacts
+	getAllContractors
 }
