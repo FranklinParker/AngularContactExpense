@@ -6,6 +6,7 @@ import {AppState} from "../../../../reducers";
 import {Store} from "@ngrx/store";
 import {selectContactPage} from "../../../contact.selector";
 import {selectContractorPage} from "../../contractor.selector";
+import {ContractorSelected} from "../../contractor.actions";
 
 @Component({
   selector: 'app-business-contact-list',
@@ -92,7 +93,7 @@ export class BusinessContactListComponent implements OnInit {
    * @param {Contact} contact
    */
   edit(contractor: Contractor){
-    //this.editContactEvent.emit(contact);
+    this.store.dispatch(new ContractorSelected({contractor}));
   }
 
 

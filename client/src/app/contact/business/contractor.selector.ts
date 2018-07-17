@@ -16,6 +16,14 @@ export const getAllContacts = createSelector(
   fromContractors.selectAll
 );
 
+export const getSelectedContractor = createSelector(
+  selectContractorState,
+  contractor => contractor.selectedContractor
+
+);
+
+
+
 
 export const selectContractorPage =
   (page: number, nbrRecords: number, companyNameFilter?: string) =>

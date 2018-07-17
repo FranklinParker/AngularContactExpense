@@ -1,8 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {ContactPerson} from "../../models/contactPerson";
 import {ContractorService} from "../../service/contractor.service";
 import {MatSnackBar} from "@angular/material";
+import {AppState} from "../../../../reducers";
+import {Store, select} from "@ngrx/store";
+import {getSelectedContractor} from "../../contractor.selector";
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -13,23 +17,16 @@ import {MatSnackBar} from "@angular/material";
 
 export class BusinessContactEditComponent implements OnInit {
   form: FormGroup;
-  serviceList: string[] =[
+  serviceList: string[] = [
     'Electrician',
     'Plumber',
     'House Cleaning'
   ];
-
-
-
-  contactList: ContactPerson[] = [{
-    name: 'Joe Brown',
-    description: 'Repair',
-    phone: '',
-    email: ''
-  }];
+  @Input() contractor;
 
   constructor(private contractorService: ContractorService,
               private fb: FormBuilder,
+              private store: Store<AppState>,
               private snackBar: MatSnackBar) {
 
     this.form = this.fb.group({
@@ -41,20 +38,25 @@ export class BusinessContactEditComponent implements OnInit {
         zip: ''
       }),
       contacts: this.fb.array([]),
-      servicesProvided : this.fb.array([])
+      servicesProvided: this.fb.array([])
     });
 
     const servicesProvided: FormArray = this.form.get('servicesProvided') as FormArray;
-    this.serviceList.forEach((service)=>
+    this.serviceList.forEach((service) =>
       servicesProvided.push(this.fb.control(service)));
     console.log('servicesProvided', servicesProvided);
 
   }
 
   ngOnInit() {
+    this.store
+      .select(getSelectedContractor).subscribe(contractor=>{
+        console.log('contractor',contractor);
+    });
 
 
     this.setContacts();
+    this.setAddress();
   }
 
   get contacts(): FormArray {
@@ -62,11 +64,15 @@ export class BusinessContactEditComponent implements OnInit {
   }
 
 
-
   setContacts() {
-    const contactFGs = this.contactList.map(contact => this.fb.group(contact));
+    const contactFGs = this.contractor.contacts.map(contact => this.fb.group(contact));
     const contactFormArray = this.fb.array(contactFGs);
     this.form.setControl('contacts', contactFormArray);
+  }
+
+  setAddress() {
+    const addressGroup: FormGroup = this.fb.group(this.contractor.address);
+    this.form.setControl('address', addressGroup);
   }
 
   onAddNew() {
@@ -74,7 +80,7 @@ export class BusinessContactEditComponent implements OnInit {
       name: 'Jay Jones',
       description: 'Helpfull',
       email: '',
-      phone:''
+      phone: ''
     };
     const formCntl = this.fb.group(contact);
     (this.form.get('contacts') as FormArray).push(formCntl);
