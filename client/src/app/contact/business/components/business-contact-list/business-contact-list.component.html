@@ -1,3 +1,63 @@
-<p>
-  business-contact-list works!
-</p>
+<mat-card>
+  <mat-card-header
+    fxLayout="column"
+    fxLayoutAlign="center left"
+    fxLayoutGap="10px">
+    <h1>Contractors</h1>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div *ngIf="contractorList && contractorList.length>0">
+      <mat-form-field >
+        <input matInput [(ngModel)]="filterCompanyName"
+               placeholder="Search All Contractors - Company Name">
+      </mat-form-field>
+      <button mat-raised-button type='button'
+              (click)="onFilterAllContractors()">Search All Contractors</button>
+      <mat-form-field >
+        <input matInput [(ngModel)]="filterAll"
+               (keyup)="applyAnyFilter($event.target.value)"
+               placeholder="Filter Contacts">
+      </mat-form-field>
+
+
+      <table mat-table #table
+             [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="companyName" >
+          <th mat-header-cell mat-sort-header
+              *matHeaderCellDef style="text-align:left;padding-left: 20px">Company Name</th>
+          <td mat-cell *matCellDef="let element" style="text-align:left">
+            <button mat-button (click)="edit(element)" color="primary">
+              {{element.companyName}}
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell
+              *matHeaderCellDef style="text-align:left;" >Services Provided</th>
+          <td mat-cell *matCellDef="let element" style="text-align:left">
+            {{element.companyName}}
+          </td>
+        </ng-container>
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            [ngClass]="{'highlight': selectedContactId === row.id}"
+            (click)="rowClicked(row)"></tr>
+      </table>
+      <mat-paginator [length]="totalContacts"
+                     [pageSize]="contactsPerPage"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="onChangedPage($event)"
+                     *ngIf="contractorList.length>0">
+      </mat-paginator>
+    </div>
+    <div *ngIf="!contractorList || contractorList.length===0">
+      <label>No Contractors found</label>
+    </div>
+  </mat-card-content>
+</mat-card>
+
