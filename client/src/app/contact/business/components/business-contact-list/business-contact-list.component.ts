@@ -5,6 +5,7 @@ import {Contractor} from "../../models/contractor";
 import {AppState} from "../../../../reducers";
 import {Store} from "@ngrx/store";
 import {selectContactPage} from "../../../contact.selector";
+import {selectContractorPage} from "../../contractor.selector";
 
 @Component({
   selector: 'app-business-contact-list',
@@ -29,6 +30,7 @@ export class BusinessContactListComponent implements OnInit {
   constructor(private store:Store<AppState>) { }
 
   ngOnInit() {
+    this.getNewPage(0,5);
   }
 
   onFilterAllContractors(){
@@ -65,12 +67,12 @@ export class BusinessContactListComponent implements OnInit {
 
   private getNewPage(pageIndex: number, pageSize: number,filterLastName?: string){
     this.store.select(
-      selectContactPage(pageIndex ,pageSize, filterLastName))
-      .subscribe((contactPage)=>{
-        console.log('selectContactPage', contactPage);
-        //this.contactList = contactPage.contacts;
-        //this.dataSource.data = this.contactList;
-        this.totalContacts = contactPage.totalRecords;
+      selectContractorPage(pageIndex ,pageSize, filterLastName))
+      .subscribe((contractorPage)=>{
+        console.log('selectContractorPage', contractorPage);
+        this.contractorList = contractorPage.contractors;
+        this.dataSource.data = this.contractorList;
+        this.totalContacts = contractorPage.totalRecords;
 
       });
 

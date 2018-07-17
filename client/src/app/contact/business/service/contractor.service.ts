@@ -55,12 +55,13 @@ export class ContractorService {
       const data: { numberRecords: number, contractor: Contractor[] } = await
         this.http.get<{ success: boolean, records: any, numberRecords: number }>(url)
           .pipe(map(contractorData => {
+            console.log('contractorData', contractorData);
             return {
               numberRecords: contractorData.numberRecords,
               contractor: contractorData.records.map(record => {
                 return {
                   id: record._id,
-                  contractorName: record.contractorName,
+                  contractorName: record.companyName,
                   servicesProvided: record.servicesProvided,
                   address: record.address,
                   contacts: record.contacts
