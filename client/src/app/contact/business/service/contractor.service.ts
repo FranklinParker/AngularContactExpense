@@ -79,6 +79,33 @@ export class ContractorService {
 
   }
 
+  /**
+   *
+   * updates an existing contact
+   *
+   * @param {Contact} contact
+   * @returns {Promise<any>}
+   */
+  async updateExistingContractor(contractor: Contractor): Promise<{ success: boolean, message?: string }> {
+    try {
+      const result = await this.http.put<any>(this.postUrl,
+        contractor
+      )
+        .pipe(map(result => {
+          return result;
+        })).toPromise();
+      console.log('contractor update save result', result);
+      return result;
+    } catch (e) {
+      console.log('error saving contractor', e);
+      return {
+        success: false,
+        message: 'System Error Saving Record'
+      };
+
+    }
+  }
+
 
 
 }

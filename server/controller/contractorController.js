@@ -48,20 +48,17 @@ const saveNewContractor = async (params) => {
  */
 const updateContractor = async (params) => {
 	const contractorData = params.actionData;
+	console.log('contractorData', contractorData);
 
 	try {
 
-		const contact = new Contact({
-			firstName: contractorData.firstName,
-			lastName: contractorData.lastName,
-			email: contractorData.email,
-			phone: contractorData.phone,
-			_id: contractorData.id
-		});
-		const contactorRec =  await Contact.updateOne({_id: contractorData.id}, contractor);
+		const contractor = new Contractor(
+			contractorData
+		);
+		const contractorRec =  await Contractor.updateOne({_id: contractorData.id}, contractor);
 		return {
 			success: true,
-			record: contactorRec
+			record: contractorRec
 		};
 	} catch (e) {
 		return {

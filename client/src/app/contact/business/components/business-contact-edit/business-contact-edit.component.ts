@@ -102,15 +102,49 @@ export class BusinessContactEditComponent implements OnInit {
   }
 
   async onSave() {
+    if (this.contractor.id) {
+      await this.updateContractor();
+    } else {
+      await this.saveNewContractor();
+
+    }
+  }
+
+  /**
+   *
+   *
+   * @returns {Promise<void>}
+   */
+  private async saveNewContractor(){
     const result = await this.contractorService.saveContractor(this.form.value);
     if (result.success) {
 
       // this.store.dispatch(new NewContactratorSaved({ contact: result.record}));
-      this.snackBar.open('New Contact Saved!', '', {
+      this.snackBar.open('New Contractor Saved!', '', {
         duration: 5000
       });
     } else {
-      this.snackBar.open(result.message, 'Error Saving Contact', {
+      this.snackBar.open(result.message, 'Error Saving Contractor', {
+        duration: 9000
+      });
+    }
+  }
+
+  /**
+   *
+   *
+   * @returns {Promise<void>}
+   */
+  private async updateContractor(){
+    const result = await this.contractorService.updateExistingContractor(this.form.value);
+    if (result.success) {
+
+      // this.store.dispatch(new NewContactratorSaved({ contact: result.record}));
+      this.snackBar.open('Contractor Updated!', '', {
+        duration: 5000
+      });
+    } else {
+      this.snackBar.open(result.message, 'Error Saving Contractor', {
         duration: 9000
       });
     }
