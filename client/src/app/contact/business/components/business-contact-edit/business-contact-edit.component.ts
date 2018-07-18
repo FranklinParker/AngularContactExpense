@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {ContactPerson} from "../../models/contactPerson";
 import {ContractorService} from "../../service/contractor.service";
-import {MatSnackBar} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
 import {AppState} from "../../../../reducers";
 import {Store, select} from "@ngrx/store";
 import {getSelectedContractor} from "../../contractor.selector";
@@ -31,7 +31,8 @@ export class BusinessContactEditComponent implements OnInit {
   constructor(private contractorService: ContractorService,
               private fb: FormBuilder,
               private store: Store<AppState>,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private matDialog: MatDialog) {
 
     this.form = this.fb.group({
       companyName: ['', Validators.required],
@@ -60,6 +61,19 @@ export class BusinessContactEditComponent implements OnInit {
 
 
   }
+
+  onAddInvoice(){
+    alert('add invoices');
+  }
+
+  onViewInvoices(){
+    alert('view invoices');
+  }
+  /**
+   * get all contacts
+   *
+   * @returns {FormArray}
+   */
 
   get contacts(): FormArray {
     return this.form.get('contacts') as FormArray;

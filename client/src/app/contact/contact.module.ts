@@ -15,6 +15,7 @@ import { BusinessContactEditComponent } from './business/components/business-con
 import { BusinessContactListComponent } from './business/components/business-contact-list/business-contact-list.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ContractorEffects} from "./business/contractor.effects";
+import { AddInvoiceComponent } from './business/components/add-invoice/add-invoice.component';
 
 @NgModule({
   imports: [
@@ -33,11 +34,15 @@ import {ContractorEffects} from "./business/contractor.effects";
     ContactListComponent,
     BusinessContactHomeComponent,
     BusinessContactEditComponent,
-    BusinessContactListComponent
+    BusinessContactListComponent,
+    AddInvoiceComponent
   ],
   exports: [
     ContactMainComponent,
     BusinessContactHomeComponent
+  ],
+  entryComponents: [
+    AddInvoiceComponent
   ]
 })
 export class ContactModule {

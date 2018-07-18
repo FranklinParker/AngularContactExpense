@@ -1,11 +1,4 @@
-<button mat-button [matMenuTriggerFor]="menu">Navigation Menu</button>
-<mat-menu #menu="matMenu">
-  <button (click)="onGoto('/contact')"
-      mat-menu-item>Contact</button>
-  <button (click)="onGoto('/')"
-          mat-menu-item>Home</button>
 
-</mat-menu>
 <mat-tab-group [(selectedIndex)]="selectedTabIndex">
   <mat-tab label="Contractor List">
     <app-business-contact-list></app-business-contact-list>

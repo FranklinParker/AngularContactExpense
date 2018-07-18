@@ -46,8 +46,6 @@ export class BusinessContactHomeComponent implements OnInit {
 
   }
 
-  onGoto(location: string){
-    this.router.navigate([location]);
-  }
+
 
 }
