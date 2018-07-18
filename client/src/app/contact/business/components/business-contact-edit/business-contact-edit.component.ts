@@ -117,6 +117,7 @@ export class BusinessContactEditComponent implements OnInit {
    */
   private async saveNewContractor(){
     const contractor: Contractor = this.form.value;
+    contractor.servicesProvided = this.servicesProvided;
 
     const result = await this.contractorService.saveContractor(contractor);
     if (result.success) {
@@ -139,6 +140,7 @@ export class BusinessContactEditComponent implements OnInit {
    */
   private async updateContractor(){
     const contractor: Contractor = this.form.value;
+    contractor.servicesProvided = this.servicesProvided;
     contractor.id = this.contractor.id;
     const result = await this.contractorService.updateExistingContractor(contractor);
     if (result.success) {
