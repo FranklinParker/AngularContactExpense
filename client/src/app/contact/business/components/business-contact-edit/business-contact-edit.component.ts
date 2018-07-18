@@ -10,6 +10,7 @@ import {tap} from 'rxjs/operators';
 import {Contractor} from "../../models/contractor";
 import {ContractorSaved, NewContractorSaved} from "../../contractor.actions";
 import {Update} from "@ngrx/entity";
+import {AddInvoiceComponent} from "../add-invoice/add-invoice.component";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -63,7 +64,11 @@ export class BusinessContactEditComponent implements OnInit {
   }
 
   onAddInvoice(){
-    alert('add invoices');
+    this.matDialog.open(AddInvoiceComponent,{
+      data: {
+        message: 'test'
+      }
+    });
   }
 
   onViewInvoices(){

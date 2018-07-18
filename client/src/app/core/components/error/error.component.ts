@@ -11,6 +11,7 @@ export class ErrorComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public messageData: {message: string}) { }
 
   ngOnInit() {
+    alert(this.messageData);
   }
 
 }
