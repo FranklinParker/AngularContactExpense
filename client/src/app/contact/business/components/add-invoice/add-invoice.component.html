@@ -1,8 +1,18 @@
 
-<h2 mat-dialog-title>Add Invoice for {{data.contractor.companyName}}</h2>
-<mat-dialog-content>Are you sure?</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button (click)="onClose()">Close</button>
-</mat-dialog-actions>
+<mat-card>
+  <mat-card-header>
+    <h2 mat-dialog-title>Add Invoice for {{data.contractor.companyName}}</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card>
+      <mat-card-content>
+        <h4>table</h4>
+      </mat-card-content>
+    </mat-card>
+    <mat-dialog-actions>
+      <button mat-button (click)="onClose()">Close</button>
+    </mat-dialog-actions>
+  </mat-card-content>
+
+</mat-card>
+
