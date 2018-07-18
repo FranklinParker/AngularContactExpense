@@ -8,6 +8,8 @@ import {Store, select} from "@ngrx/store";
 import {getSelectedContractor} from "../../contractor.selector";
 import {tap} from 'rxjs/operators';
 import {Contractor} from "../../models/contractor";
+import {ContractorSaved, NewContractorSaved} from "../../contractor.actions";
+import {Update} from "@ngrx/entity";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -122,7 +124,7 @@ export class BusinessContactEditComponent implements OnInit {
     const result = await this.contractorService.saveContractor(contractor);
     if (result.success) {
 
-      // this.store.dispatch(new NewContactratorSaved({ contact: result.record}));
+      this.store.dispatch(new NewContractorSaved({ contractor: result.record}));
       this.snackBar.open('New Contractor Saved!', '', {
         duration: 5000
       });
@@ -144,8 +146,11 @@ export class BusinessContactEditComponent implements OnInit {
     contractor.id = this.contractor.id;
     const result = await this.contractorService.updateExistingContractor(contractor);
     if (result.success) {
-
-      // this.store.dispatch(new NewContactratorSaved({ contact: result.record}));
+      const contractorUpdate: Update<Contractor> = {
+        id: this.contractor.id,
+        changes: contractor
+      };
+      this.store.dispatch(new ContractorSaved({ contractor: contractorUpdate}));
       this.snackBar.open('Contractor Updated!', '', {
         duration: 5000
       });

@@ -36,8 +36,10 @@ export function contractorReducer(state = initialState, action: ContractorAction
     case ContractorActionTypes.ContractorSelectedAction:
       return { ...state, selectedContractor: action.payload.contractor}
     case ContractorActionTypes.NewContractorSavedAction:
-      console.log(' new contractor saved', action.payload);
       return adapter.addOne(action.payload.contractor, state);
+    case ContractorActionTypes.ContractorSavedAction:
+      return adapter.updateOne(action.payload.contractor, state);
+
     default:
       return state;
   }
