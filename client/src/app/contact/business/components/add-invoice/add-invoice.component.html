@@ -15,6 +15,46 @@
     <mat-card>
       <mat-card-content>
         <h4>table</h4>
+        <mat-table #table [dataSource]="dataSource">
+          <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef style="text-align:left;padding-left: 20px">Item amount
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" style="text-align:left">
+              <input
+                matInput
+                name="amount"
+                type="number"
+                [(ngModel)]="element.amount"
+                required>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="itemDescription">
+            <mat-header-cell *matHeaderCellDef style="text-align:left"> Item Description</mat-header-cell>
+            <mat-cell *matCellDef="let element" style="text-align:left">
+              <input
+                matInput
+                name="itemDescription"
+                type="text"
+                [(ngModel)]="element.itemDescription"
+                required>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef style="text-align:left">
+              Delete
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" style="text-align:left">
+              <button type="button" (click)="deleteItem(element)"
+                      mat-button>Delete Item
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+
       </mat-card-content>
     </mat-card>
     <mat-dialog-actions>
