@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Contractor} from "../../models/contractor";
+import {ContractorInvoice} from "../../models/ContractorInvoice";
 
 @Component({
   selector: 'app-add-invoice',
@@ -9,6 +10,11 @@ import {Contractor} from "../../models/contractor";
 })
 export class AddInvoiceComponent implements OnInit {
 
+
+  invoice: ContractorInvoice ={
+    dateInvoice: null,
+    description: null
+  };
   constructor(@Inject(MAT_DIALOG_DATA)
               public data: {contractor: Contractor},
               public dialogRef: MatDialogRef<any>) { }

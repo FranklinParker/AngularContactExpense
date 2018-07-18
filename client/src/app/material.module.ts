@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDatepickerModule,
   MatDialogModule,
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatMenuModule,
+  MatListModule, MatMenuModule, MatNativeDateModule,
   MatPaginatorModule,
   MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
@@ -34,7 +34,10 @@ import {LayoutModule} from "@angular/cdk/layout";
     MatTabsModule,
     MatSortModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
   ],
 
   declarations: []
