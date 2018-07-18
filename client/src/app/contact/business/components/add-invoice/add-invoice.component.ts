@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {Contractor} from "../../models/contractor";
 
 @Component({
   selector: 'app-add-invoice',
@@ -9,9 +10,15 @@ import {MAT_DIALOG_DATA} from "@angular/material";
 export class AddInvoiceComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA)
-              public messageData: {message: string}) { }
+              public data: {contractor: Contractor},
+              public dialogRef: MatDialogRef<any>) { }
 
   ngOnInit() {
+    console.log('contractor', this.data.contractor);
+  }
+
+  onClose(){
+    this.dialogRef.close();
   }
 
 }

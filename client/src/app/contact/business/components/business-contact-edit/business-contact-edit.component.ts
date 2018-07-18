@@ -63,11 +63,16 @@ export class BusinessContactEditComponent implements OnInit {
 
   }
 
+  /**
+   * add new Invoice for this contractor
+   *
+   */
   onAddInvoice(){
     this.matDialog.open(AddInvoiceComponent,{
       data: {
-        message: 'test'
-      }
+        contractor: this.contractor
+      },
+      disableClose: true
     });
   }
 
