@@ -19,6 +19,11 @@ export const getAllContacts = createSelector(
 export const getSelectedContractor = createSelector(
   selectContractorState,
   contractor => contractor.selectedContractor
+);
+
+export const getSelectedInvoice = createSelector(
+  selectContractorState,
+  contractor => contractor.selectedInvoice
 
 );
 

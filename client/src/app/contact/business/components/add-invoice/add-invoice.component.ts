@@ -1,9 +1,12 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, Input} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
 import {Contractor} from "../../models/contractor";
 import {ContractorInvoice} from "../../models/ContractorInvoice";
 import {InvoiceLine} from "../../models/InvoiceLines";
 import {ContractorService} from "../../service/contractor.service";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../../reducers";
+import {getSelectedInvoice} from "../../contractor.selector";
 
 @Component({
   selector: 'app-add-invoice',
@@ -13,7 +16,7 @@ import {ContractorService} from "../../service/contractor.service";
 export class AddInvoiceComponent implements OnInit {
   invoice: ContractorInvoice ={
     dateInvoice: null,
-    description: null,
+    description: 'first',
     invoiceLines:[
     ]
   };
@@ -26,12 +29,18 @@ export class AddInvoiceComponent implements OnInit {
               public data: {contractor: Contractor},
               public dialogRef: MatDialogRef<any>,
               private contractorService: ContractorService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private store: Store<AppState>) {
     this.contractor = data.contractor;
   }
 
   ngOnInit() {
     this.dataSource.data = this.invoice.invoiceLines;
+    this.store.select(getSelectedInvoice)
+      .subscribe((invoice:ContractorInvoice)=>{
+        console.log('got invoice', invoice);
+        this.invoice= invoice;
+    })
   }
 
   /**

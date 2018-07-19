@@ -7,10 +7,11 @@ import {AppState} from "../../../../reducers";
 import {Store} from "@ngrx/store";
 import {getSelectedContractor} from "../../contractor.selector";
 import {Contractor} from "../../models/contractor";
-import {ContractorSaved, NewContractorSaved} from "../../contractor.actions";
+import {ContractorSaved, InvoiceSelected, NewContractorSaved} from "../../contractor.actions";
 import {Update} from "@ngrx/entity";
 import {AddInvoiceComponent} from "../add-invoice/add-invoice.component";
 import {ViewInvoicesComponent} from "../view-invoices/view-invoices.component";
+import {ContractorInvoice} from "../../models/ContractorInvoice";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -68,10 +69,19 @@ export class BusinessContactEditComponent implements OnInit {
    *
    */
   onAddInvoice() {
+    const invoice: ContractorInvoice ={
+      dateInvoice: null,
+      description: null,
+      invoiceLines:[
+      ]
+    };
+
+    this.store.dispatch(new InvoiceSelected({invoice}));
     this.matDialog.open(AddInvoiceComponent, {
       data: {
         contractor: this.contractor
       },
+      width: '85%',
       disableClose: true
     });
   }

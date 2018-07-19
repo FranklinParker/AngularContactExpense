@@ -1,11 +1,13 @@
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 import {ContractorActions, ContractorActionTypes} from "./contractor.actions";
 import {Contractor} from "./models/contractor";
+import {ContractorInvoice} from "./models/ContractorInvoice";
 
 
 export interface ContractorState extends EntityState<Contractor> {
   allContractorsLoaded: boolean;
   selectedContractor: Contractor;
+  selectedInvoice: ContractorInvoice;
 
 }
 
@@ -26,7 +28,8 @@ export const initialState: ContractorState = adapter.getInitialState({
     },
     contacts: [],
     invoices: []
-  }
+  },
+  selectedInvoice: undefined
 });
 
 export function contractorReducer(state = initialState, action: ContractorActions): ContractorState {
@@ -40,7 +43,8 @@ export function contractorReducer(state = initialState, action: ContractorAction
       return adapter.addOne(action.payload.contractor, state);
     case ContractorActionTypes.ContractorSavedAction:
       return adapter.updateOne(action.payload.contractor, state);
-
+    case ContractorActionTypes.InvoiceSelectedAction:
+      return { ...state, selectedInvoice: action.payload.invoice};
     default:
       return state;
   }
