@@ -14,11 +14,7 @@ import {getSelectedContractor, getSelectedInvoice} from "../../contractor.select
   styleUrls: ['./add-invoice.component.css']
 })
 export class AddInvoiceComponent implements OnInit {
-  invoice: ContractorInvoice = {
-    dateInvoice: null,
-    description: 'first',
-    invoiceLines: []
-  };
+  invoice: ContractorInvoice;
   contractor: Contractor;
 
 
