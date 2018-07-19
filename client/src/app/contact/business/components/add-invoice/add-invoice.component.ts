@@ -6,7 +6,7 @@ import {InvoiceLine} from "../../models/InvoiceLines";
 import {ContractorService} from "../../service/contractor.service";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../../reducers";
-import {getSelectedInvoice} from "../../contractor.selector";
+import {getSelectedContractor, getSelectedInvoice} from "../../contractor.selector";
 
 @Component({
   selector: 'app-add-invoice',
@@ -14,19 +14,19 @@ import {getSelectedInvoice} from "../../contractor.selector";
   styleUrls: ['./add-invoice.component.css']
 })
 export class AddInvoiceComponent implements OnInit {
-  invoice: ContractorInvoice ={
+  invoice: ContractorInvoice = {
     dateInvoice: null,
     description: 'first',
-    invoiceLines:[
-    ]
+    invoiceLines: []
   };
   contractor: Contractor;
 
 
   dataSource = new MatTableDataSource<InvoiceLine>(null);
-  displayedColumns = ['amount','itemDescription','delete'];
+  displayedColumns = ['amount', 'itemDescription', 'delete'];
+
   constructor(@Inject(MAT_DIALOG_DATA)
-              public data: {contractor: Contractor},
+              public data: any,
               public dialogRef: MatDialogRef<any>,
               private contractorService: ContractorService,
               private snackBar: MatSnackBar,
@@ -35,12 +35,15 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.data = this.invoice.invoiceLines;
+
     this.store.select(getSelectedInvoice)
-      .subscribe((invoice:ContractorInvoice)=>{
-        console.log('got invoice', invoice);
-        this.invoice= invoice;
-    })
+      .subscribe((invoice: ContractorInvoice) => {
+        this.invoice = invoice;
+        this.dataSource.data = this.invoice.invoiceLines;
+      });
+    this.store.select(getSelectedContractor)
+      .subscribe((contractor: Contractor) =>
+        this.contractor = contractor)
   }
 
   /**
@@ -48,14 +51,15 @@ export class AddInvoiceComponent implements OnInit {
    *
    *
    */
-  onClose(){
+  onClose() {
     this.dialogRef.close();
   }
+
   /***
    *
    *
    */
-  onAddInvoiceLine(){
+  onAddInvoiceLine() {
     this.invoice.invoiceLines.push({
       itemDescription: 'Description',
       amount: 0
@@ -67,7 +71,7 @@ export class AddInvoiceComponent implements OnInit {
    *
    *
    */
-  async onSave(){
+  async onSave() {
     this.contractor.invoices.push(this.invoice);
     console.log('contractor', this.contractor);
     const result = await this.contractorService.updateExistingContractor(this.contractor);
@@ -91,24 +95,23 @@ export class AddInvoiceComponent implements OnInit {
    *
    * @param {InvoiceLine} invoiceLine
    */
-  deleteItem(invoiceLine:InvoiceLine){
+  deleteItem(invoiceLine: InvoiceLine) {
     const idx = this.invoice.invoiceLines.indexOf(invoiceLine);
 
-    if(idx!=-1){
-      this.invoice.invoiceLines.splice(idx,1);
+    if (idx != -1) {
+      this.invoice.invoiceLines.splice(idx, 1);
       this.dataSource.data = this.invoice.invoiceLines;
     }
   }
 
-  get invoiceTotal(){
-    if(!this.invoice || !this.invoice.invoiceLines){
+  get invoiceTotal() {
+    if (!this.invoice || !this.invoice.invoiceLines) {
       return 0;
     }
     let total = 0;
-    this.invoice.invoiceLines.forEach(invoiceLine=> total+=invoiceLine.amount )
+    this.invoice.invoiceLines.forEach(invoiceLine => total += invoiceLine.amount)
     return total;
   }
-
 
 
 }
