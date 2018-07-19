@@ -16,10 +16,17 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput
-               name="companyName"
+               name="description"
                [(ngModel)]="invoice.description"
                type="text"
                placeholder="Description">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="description"
+               [ngModel]="invoiceTotal"
+               type="text"
+               placeholder="Invoice Total">
       </mat-form-field>
     </div>
     <mat-card>

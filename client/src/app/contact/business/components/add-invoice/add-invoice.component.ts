@@ -91,6 +91,15 @@ export class AddInvoiceComponent implements OnInit {
     }
   }
 
+  get invoiceTotal(){
+    if(!this.invoice || !this.invoice.invoiceLines){
+      return 0;
+    }
+    let total = 0;
+    this.invoice.invoiceLines.forEach(invoiceLine=> total+=invoiceLine.amount )
+    return total;
+  }
+
 
 
 }
