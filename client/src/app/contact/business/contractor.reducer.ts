@@ -14,21 +14,22 @@ export interface ContractorState extends EntityState<Contractor> {
 export const adapter: EntityAdapter<Contractor> =
   createEntityAdapter<Contractor>();
 
+export const BLANK_CONTRACTOR: Contractor={
+  companyName: undefined,
+  servicesProvided: [],
+  address: {
+    street: undefined,
+    city: undefined,
+    state: undefined,
+    zip: undefined
+  },
+  contacts: [],
+  invoices: []
+};
 
 export const initialState: ContractorState = adapter.getInitialState({
   allContractorsLoaded: false,
-  selectedContractor: {
-    companyName: undefined,
-    servicesProvided: [],
-    address: {
-      street: undefined,
-      city: undefined,
-      state: undefined,
-      zip: undefined
-    },
-    contacts: [],
-    invoices: []
-  },
+  selectedContractor: BLANK_CONTRACTOR,
   selectedInvoice: undefined
 });
 
