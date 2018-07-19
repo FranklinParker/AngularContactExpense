@@ -1,21 +1,32 @@
-
 <mat-card>
   <mat-card-header>
     <h2 mat-dialog-title>Add Invoice for {{data.contractor.companyName}}</h2>
   </mat-card-header>
   <mat-card-content>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker"
-             [(ngModel)]="invoice.dateInvoice"
-             name="date"
-             placeholder="Invoice Date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    <div fxLayout="column"
+         fxLayoutAlign="center center"
+         fxLayoutGap="10px">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker"
+               [(ngModel)]="invoice.dateInvoice"
+               name="date"
+               placeholder="Invoice Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               name="companyName"
+               [(ngModel)]="invoice.description"
+               type="text"
+               placeholder="Description">
+      </mat-form-field>
+    </div>
     <mat-card>
       <mat-card-content>
         <button mat-raised-button
-                (click)="onAddInvoiceLine()">Add Invoice Line</button>
+                (click)="onAddInvoiceLine()">Add Invoice Line
+        </button>
         <mat-table #table [dataSource]="dataSource">
           <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef style="text-align:left;padding-left: 20px">Item amount
@@ -23,6 +34,7 @@
             <mat-cell *matCellDef="let element" style="text-align:left">
               <input
                 matInput
+                placeholder="Amount"
                 name="amount"
                 type="number"
                 [(ngModel)]="element.amount"
@@ -59,7 +71,10 @@
     </mat-card>
     <mat-dialog-actions>
       <button mat-raised-button color="accent"
-              (click)="onClose()">Close</button>
+              (click)="onSave()">Save</button>
+      <button mat-raised-button color="accent"
+              (click)="onClose()">Close
+      </button>
     </mat-dialog-actions>
   </mat-card-content>
 

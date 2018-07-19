@@ -12,26 +12,7 @@ import {getSelectedContractor} from "../../contractor.selector";
   styleUrls: ['./business-contact-home.component.css']
 })
 export class BusinessContactHomeComponent implements OnInit {
-  contractor: Contractor = {
-    companyName: 'test',
-    servicesProvided: [],
-    address: {
-      street: 'main st',
-      city: 'ny',
-      state: 'ny',
-      zip: '99999'
-    },
-    contacts: [
-      { name: 'joe',
-        description: 'test',
-        email: 'email',
-        phone: '8888'
-      }
-    ]
-
-  };
   selectedTabIndex = 0;
-
   constructor(private router:Router,
               private store: Store<AppState>) { }
 
@@ -45,7 +26,5 @@ export class BusinessContactHomeComponent implements OnInit {
     });
 
   }
-
-
 
 }

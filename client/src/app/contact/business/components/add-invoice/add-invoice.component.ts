@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatTableDataSource} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
 import {Contractor} from "../../models/contractor";
 import {ContractorInvoice} from "../../models/ContractorInvoice";
 import {InvoiceLine} from "../../models/InvoiceLines";
+import {ContractorService} from "../../service/contractor.service";
 
 @Component({
   selector: 'app-add-invoice',
@@ -10,24 +11,26 @@ import {InvoiceLine} from "../../models/InvoiceLines";
   styleUrls: ['./add-invoice.component.css']
 })
 export class AddInvoiceComponent implements OnInit {
-
-
   invoice: ContractorInvoice ={
     dateInvoice: null,
     description: null,
     invoiceLines:[
     ]
-
   };
+  contractor: Contractor;
+
 
   dataSource = new MatTableDataSource<InvoiceLine>(null);
   displayedColumns = ['amount','itemDescription','delete'];
   constructor(@Inject(MAT_DIALOG_DATA)
               public data: {contractor: Contractor},
-              public dialogRef: MatDialogRef<any>) { }
+              public dialogRef: MatDialogRef<any>,
+              private contractorService: ContractorService,
+              private snackBar: MatSnackBar) {
+    this.contractor = data.contractor;
+  }
 
   ngOnInit() {
-    console.log('contractor', this.data.contractor);
     this.dataSource.data = this.invoice.invoiceLines;
   }
 
@@ -39,7 +42,10 @@ export class AddInvoiceComponent implements OnInit {
   onClose(){
     this.dialogRef.close();
   }
-
+  /***
+   *
+   *
+   */
   onAddInvoiceLine(){
     this.invoice.invoiceLines.push({
       itemDescription: 'Description',
@@ -47,5 +53,28 @@ export class AddInvoiceComponent implements OnInit {
     });
     this.dataSource.data = this.invoice.invoiceLines;
   }
+
+  /**
+   *
+   *
+   */
+  async onSave(){
+    this.contractor.invoices.push(this.invoice);
+    console.log('contractor', this.contractor);
+    const result = await this.contractorService.updateExistingContractor(this.contractor);
+    console.log('result', result);
+
+    if (result.success) {
+      this.snackBar.open('Invoice Saved!', '', {
+        duration: 5000
+      });
+    } else {
+      this.snackBar.open(result.message, 'Error Saving Contractor', {
+        duration: 9000
+      });
+    }
+
+  }
+
 
 }

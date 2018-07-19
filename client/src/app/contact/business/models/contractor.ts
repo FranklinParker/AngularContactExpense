@@ -1,5 +1,6 @@
 import {ContactPerson} from "./contactPerson";
 import {Address} from "./address";
+import {ContractorInvoice} from "./ContractorInvoice";
 
 export interface Contractor {
   id?: string;
@@ -7,4 +8,5 @@ export interface Contractor {
   servicesProvided: string[];
   address: Address;
   contacts: ContactPerson[];
+  invoices: ContractorInvoice[];
 }

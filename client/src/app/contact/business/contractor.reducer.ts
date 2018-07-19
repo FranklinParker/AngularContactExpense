@@ -24,7 +24,8 @@ export const initialState: ContractorState = adapter.getInitialState({
       state: undefined,
       zip: undefined
     },
-    contacts: []
+    contacts: [],
+    invoices: []
   }
 });
 

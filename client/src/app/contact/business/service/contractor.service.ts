@@ -64,7 +64,8 @@ export class ContractorService {
                   companyName: record.companyName,
                   servicesProvided: record.servicesProvided,
                   address: record.address,
-                  contacts: record.contacts
+                  contacts: record.contacts,
+                  invoices: record.invoices? record.invoices: []
                 };
               })
             };
