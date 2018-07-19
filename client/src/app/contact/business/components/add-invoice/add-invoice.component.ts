@@ -17,17 +17,17 @@ export class AddInvoiceComponent implements OnInit {
   invoice: ContractorInvoice;
   contractor: Contractor;
 
-
   dataSource = new MatTableDataSource<InvoiceLine>(null);
   displayedColumns = ['amount', 'itemDescription', 'delete'];
+  isAddNew: boolean;
 
   constructor(@Inject(MAT_DIALOG_DATA)
-              public data: any,
+              public data: { isAddNew: boolean},
               public dialogRef: MatDialogRef<any>,
               private contractorService: ContractorService,
               private snackBar: MatSnackBar,
               private store: Store<AppState>) {
-    this.contractor = data.contractor;
+    this.isAddNew = data.isAddNew;
   }
 
   ngOnInit() {
@@ -98,6 +98,11 @@ export class AddInvoiceComponent implements OnInit {
     }
   }
 
+  /**
+   * gets total of all invoice lines
+   *
+   * @returns {number}
+   */
   get invoiceTotal() {
     if (!this.invoice || !this.invoice.invoiceLines) {
       return 0;
@@ -106,6 +111,15 @@ export class AddInvoiceComponent implements OnInit {
     this.invoice.invoiceLines.forEach(invoiceLine => total += invoiceLine.amount)
     return total;
   }
+  get header(){
+    if( this.isAddNew){
+      return 'Add Invoice for: ' + this.contractor.companyName;
+    } else{
+      return 'Updating Invoice for: ' + this.contractor.companyName;
+
+    }
+  }
+
 
 
 }

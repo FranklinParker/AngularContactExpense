@@ -78,8 +78,7 @@ export class BusinessContactEditComponent implements OnInit {
 
     this.store.dispatch(new InvoiceSelected({invoice}));
     this.matDialog.open(AddInvoiceComponent, {
-      data: {
-      },
+      data: { isAddNew: true },
       width: '85%',
       disableClose: true
     });

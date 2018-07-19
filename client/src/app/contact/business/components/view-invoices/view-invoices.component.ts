@@ -18,6 +18,7 @@ export class ViewInvoicesComponent implements OnInit {
   dataSource = new MatTableDataSource<ContractorInvoice>(null);
   displayedColumns = ['invoiceDate', 'description', 'total'];
 
+
   constructor(@Inject(MAT_DIALOG_DATA)
               public data: { contractor: Contractor },
               public dialogRef: MatDialogRef<any>,
@@ -51,8 +52,7 @@ export class ViewInvoicesComponent implements OnInit {
     this.store.dispatch( new InvoiceSelected({invoice}));
     this.dialogRef.close();
     this.matDialog.open(AddInvoiceComponent, {
-      data: {
-      },
+      data: { isAddNew: false },
       width: '85%',
       disableClose: true
     });
