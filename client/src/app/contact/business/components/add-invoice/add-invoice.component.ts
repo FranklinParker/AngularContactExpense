@@ -76,5 +76,21 @@ export class AddInvoiceComponent implements OnInit {
 
   }
 
+  /**
+   * delete invoice line
+   *
+   *
+   * @param {InvoiceLine} invoiceLine
+   */
+  deleteItem(invoiceLine:InvoiceLine){
+    const idx = this.invoice.invoiceLines.indexOf(invoiceLine);
+
+    if(idx!=-1){
+      this.invoice.invoiceLines.splice(idx,1);
+      this.dataSource.data = this.invoice.invoiceLines;
+    }
+  }
+
+
 
 }

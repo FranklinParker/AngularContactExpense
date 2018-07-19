@@ -24,7 +24,6 @@ export class BusinessContactHomeComponent implements OnInit {
           this.selectedTabIndex = 1;
         }
     });
-
   }
 
 }
