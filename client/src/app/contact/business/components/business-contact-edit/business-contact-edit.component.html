@@ -1,18 +1,7 @@
 <mat-card>
   <mat-card-header>
     <h3>Add/Edit Contractor</h3>
-    <button mat-stroked-button (click)="onSetToAddNewContractor()">Add New</button>
-    <div *ngIf="contractor && contractor.id">
-      <button mat-button [matMenuTriggerFor]="menu">Invoices Menu</button>
-      <mat-menu #menu="matMenu">
-        <button (click)="onAddInvoice()"
-                mat-menu-item>Add Invoice
-        </button>
-        <button (click)="onViewInvoices()"
-                mat-menu-item>View Invoices
-        </button>
-      </mat-menu>
-    </div>
+
   </mat-card-header>
 
   <mat-card-content>
@@ -126,11 +115,24 @@
           </mat-card>
         </mat-expansion-panel>
       </mat-accordion>
-      <button mat-raised-button
-              color="accent"
-              type="button" (click)="onSave()">Save
-      </button>
+      <mat-action-row>
+        <button mat-raised-button
+                color="accent"
+                type="button" (click)="onSave()">Save
+        </button>
+        <button mat-stroked-button (click)="onSetToAddNewContractor()">Add New</button>
+        <div *ngIf="contractor && contractor.id">
+          <button mat-button [matMenuTriggerFor]="menu">Invoices Menu</button>
+          <mat-menu #menu="matMenu">
+            <button (click)="onAddInvoice()"
+                    mat-menu-item>Add Invoice
+            </button>
+            <button (click)="onViewInvoices()"
+                    mat-menu-item>View Invoices
+            </button>
+          </mat-menu>
+        </div>
+      </mat-action-row>
     </form>
   </mat-card-content>
-
 </mat-card>

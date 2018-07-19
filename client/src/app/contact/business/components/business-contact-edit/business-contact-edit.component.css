@@ -33,6 +33,9 @@ mat-accordion{
 
 }
 
+button {
+  margin-left: 2rem;
+}
 
 mat-card-header{
   color: white;
