@@ -21,7 +21,7 @@ const ContractorSchema = new Schema({
 	}],
 	invoices: [{
 		description: {type: String},
-		invoiceDate: {type: Date},
+		dateInvoice: {type: Date},
 		invoiceLines: [{
 			itemDescription: {type: String},
 			amount: {type: Number}
