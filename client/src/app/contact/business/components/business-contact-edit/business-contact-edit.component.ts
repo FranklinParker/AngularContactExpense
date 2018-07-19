@@ -189,6 +189,7 @@ export class BusinessContactEditComponent implements OnInit {
     const contractor: Contractor = this.form.value;
     contractor.servicesProvided = this.servicesProvided;
     contractor.id = this.contractor.id;
+    contractor.invoices = this.contractor.invoices;
     const result = await this.contractorService.updateExistingContractor(contractor);
     if (result.success) {
       const contractorUpdate: Update<Contractor> = {

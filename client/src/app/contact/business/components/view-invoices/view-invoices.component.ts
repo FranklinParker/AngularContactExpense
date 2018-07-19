@@ -4,6 +4,9 @@ import {ContractorService} from "../../service/contractor.service";
 import {Contractor} from "../../models/contractor";
 import {InvoiceLine} from "../../models/InvoiceLines";
 import {ContractorInvoice} from "../../models/ContractorInvoice";
+import {AppState} from "../../../../reducers";
+import {Store} from "@ngrx/store";
+import {getSelectedContractor} from "../../contractor.selector";
 
 @Component({
   selector: 'app-view-invoices',
@@ -13,27 +16,35 @@ import {ContractorInvoice} from "../../models/ContractorInvoice";
 export class ViewInvoicesComponent implements OnInit {
   contractor: Contractor;
   dataSource = new MatTableDataSource<ContractorInvoice>(null);
-  displayedColumns = ['invoiceDate','description','total'];
+  displayedColumns = ['invoiceDate', 'description', 'total'];
+
   constructor(@Inject(MAT_DIALOG_DATA)
-              public data: {contractor: Contractor},
-              public dialogRef: MatDialogRef<any>) {
-    this.contractor = data.contractor;
-    this.dataSource.data = this.contractor.invoices;
+              public data: { contractor: Contractor },
+              public dialogRef: MatDialogRef<any>,
+              private store: Store<AppState>) {
+
   }
 
   ngOnInit() {
-    this.calcInvoiceTotals();
+    this.store.select(getSelectedContractor)
+      .subscribe((contractor: Contractor) => {
+          this.contractor = contractor;
+          this.dataSource.data = this.contractor.invoices;
+          this.calcInvoiceTotals();
+        }
+      );
+
   }
 
-  onClose(){
+  onClose() {
     this.dialogRef.close();
   }
 
-  private calcInvoiceTotals(){
-    this.contractor.invoices.forEach(invoice=>{
+  private calcInvoiceTotals() {
+    this.contractor.invoices.forEach(invoice => {
       let total = 0;
-      invoice.invoiceLines.forEach(invoiceLine=>{
-        total+= invoiceLine.amount;
+      invoice.invoiceLines.forEach(invoiceLine => {
+        total += invoiceLine.amount;
       });
       invoice.totalAmount = total;
     })

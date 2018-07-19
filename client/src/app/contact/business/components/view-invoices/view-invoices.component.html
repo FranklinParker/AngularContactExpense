@@ -1,15 +1,15 @@
 <mat-tab>
 
 </mat-tab>
-<mat-card>
+<mat-card *ngIf="contractor">
   <mat-card-header>
-    <h2 >Invoices For {{data.contractor.companyName}}</h2>
+    <h2 >Invoices For {{contractor.companyName}}</h2>
   </mat-card-header>
   <mat-card-content>
 
 
     <mat-card>
-      <mat-card-content>
+      <mat-card-content *ngIf="contractor">
 
         <mat-table #table [dataSource]="dataSource">
 
