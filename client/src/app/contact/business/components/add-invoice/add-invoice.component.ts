@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, Input} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
 import {Contractor} from "../../models/contractor";
 import {ContractorInvoice} from "../../models/ContractorInvoice";
