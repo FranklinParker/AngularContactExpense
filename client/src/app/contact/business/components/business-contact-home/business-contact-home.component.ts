@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../../reducers";
 import {LoadAllContractors} from "../../contractor.actions";
-import {Contractor} from "../../models/contractor";
 import {getSelectedContractor} from "../../contractor.selector";
 
 @Component({

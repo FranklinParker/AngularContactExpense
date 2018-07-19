@@ -10,6 +10,7 @@ import {Contractor} from "../../models/contractor";
 import {ContractorSaved, NewContractorSaved} from "../../contractor.actions";
 import {Update} from "@ngrx/entity";
 import {AddInvoiceComponent} from "../add-invoice/add-invoice.component";
+import {ViewInvoicesComponent} from "../view-invoices/view-invoices.component";
 
 @Component({
   selector: 'app-business-contact-edit',
@@ -66,8 +67,8 @@ export class BusinessContactEditComponent implements OnInit {
    * add new Invoice for this contractor
    *
    */
-  onAddInvoice(){
-    this.matDialog.open(AddInvoiceComponent,{
+  onAddInvoice() {
+    this.matDialog.open(AddInvoiceComponent, {
       data: {
         contractor: this.contractor
       },
@@ -75,9 +76,20 @@ export class BusinessContactEditComponent implements OnInit {
     });
   }
 
-  onViewInvoices(){
-    alert('view invoices');
+  /**
+   *
+   *
+   */
+  onViewInvoices() {
+    this.matDialog.open(ViewInvoicesComponent, {
+      data: {
+        contractor: this.contractor
+      },
+      width: '80%',
+      disableClose: true
+    });
   }
+
   /**
    * get all contacts
    *
@@ -88,8 +100,8 @@ export class BusinessContactEditComponent implements OnInit {
     return this.form.get('contacts') as FormArray;
   }
 
-  private setContractorForm(){
-    const companyNameCntrl:FormControl = this.fb.control(this.contractor.companyName);
+  private setContractorForm() {
+    const companyNameCntrl: FormControl = this.fb.control(this.contractor.companyName);
     this.form.setControl('companyName', companyNameCntrl);
 
     const contactFGs = this.contractor.contacts.map(contact => this.fb.group(contact));
@@ -110,7 +122,7 @@ export class BusinessContactEditComponent implements OnInit {
    * @param {string} b
    * @returns {boolean}
    */
-  selectedServiceProvided(a: string,b:string){
+  selectedServiceProvided(a: string, b: string) {
     return a === b;
   }
 
@@ -140,14 +152,14 @@ export class BusinessContactEditComponent implements OnInit {
    *
    * @returns {Promise<void>}
    */
-  private async saveNewContractor(){
+  private async saveNewContractor() {
     const contractor: Contractor = this.form.value;
     contractor.servicesProvided = this.servicesProvided;
 
     const result = await this.contractorService.saveContractor(contractor);
     if (result.success) {
 
-      this.store.dispatch(new NewContractorSaved({ contractor: result.record}));
+      this.store.dispatch(new NewContractorSaved({contractor: result.record}));
       this.snackBar.open('New Contractor Saved!', '', {
         duration: 5000
       });
@@ -163,7 +175,7 @@ export class BusinessContactEditComponent implements OnInit {
    *
    * @returns {Promise<void>}
    */
-  private async updateContractor(){
+  private async updateContractor() {
     const contractor: Contractor = this.form.value;
     contractor.servicesProvided = this.servicesProvided;
     contractor.id = this.contractor.id;
@@ -173,7 +185,7 @@ export class BusinessContactEditComponent implements OnInit {
         id: this.contractor.id,
         changes: contractor
       };
-      this.store.dispatch(new ContractorSaved({ contractor: contractorUpdate}));
+      this.store.dispatch(new ContractorSaved({contractor: contractorUpdate}));
       this.snackBar.open('Contractor Updated!', '', {
         duration: 5000
       });
