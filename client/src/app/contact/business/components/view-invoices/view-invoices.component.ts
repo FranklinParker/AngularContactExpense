@@ -1,8 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
-import {ContractorService} from "../../service/contractor.service";
 import {Contractor} from "../../models/contractor";
-import {InvoiceLine} from "../../models/InvoiceLines";
 import {ContractorInvoice} from "../../models/ContractorInvoice";
 import {AppState} from "../../../../reducers";
 import {Store} from "@ngrx/store";
