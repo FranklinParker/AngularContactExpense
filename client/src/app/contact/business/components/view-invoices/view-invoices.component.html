@@ -3,13 +3,9 @@
     <h2 >Invoices For {{contractor.companyName}}</h2>
   </mat-card-header>
   <mat-card-content>
-
-
     <mat-card>
       <mat-card-content *ngIf="contractor">
-
         <mat-table #table [dataSource]="dataSource">
-
           <ng-container matColumnDef="invoiceDate">
             <mat-header-cell *matHeaderCellDef style="text-align:left"> Date Invoice</mat-header-cell>
             <mat-cell *matCellDef="let element" style="text-align:left">

@@ -32,3 +32,11 @@ mat-accordion{
   alignment: center;
 
 }
+
+
+mat-card-header{
+  color: white;
+  background-color: black;
+  alignment: center;
+}
+

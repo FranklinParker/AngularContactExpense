@@ -38,6 +38,9 @@ export function contractorReducer(state = initialState, action: ContractorAction
     case ContractorActionTypes.ContractorsLoadedAction:
       return adapter.addAll(action.payload.contractors,
         {...state, allContractorsLoaded: true});
+    case ContractorActionTypes.BlankContractorSelectedAction:
+      return { ...state, selectedContractor: BLANK_CONTRACTOR}
+
     case ContractorActionTypes.ContractorSelectedAction:
       return { ...state, selectedContractor: action.payload.contractor}
     case ContractorActionTypes.NewContractorSavedAction:

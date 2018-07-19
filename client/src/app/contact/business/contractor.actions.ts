@@ -7,6 +7,7 @@ export enum ContractorActionTypes {
   LoadAllContractorAction = '[LoadAllContractorAction] Load Contacts',
   ContractorsLoadedAction = '[ContractorsLoaded] Contractor Loaded',
   ContractorSelectedAction = '[ContractorSelected] Contractor selected',
+  BlankContractorSelectedAction = '[BlankContractorSelected] Blank Contractor selected',
   ContractorSavedAction = '[ContractorSaved] Contractor',
   NewContractorSavedAction = '[NewContractorSavedAction] Save new',
   InvoiceSelectedAction = '[InvoiceSelectedAction] select invoice',
@@ -24,6 +25,12 @@ export class ContractorsLoaded implements Action {
   constructor(public payload: { contractors: Contractor[] }) {
 
   }
+}
+
+export class BlankContractorSelected implements Action {
+  readonly type = ContractorActionTypes.BlankContractorSelectedAction;
+
+
 }
 
 
@@ -64,5 +71,6 @@ export type ContractorActions = LoadAllContractors
   | ContractorsLoaded
   | ContractorSaved
   | NewContractorSaved
+  | BlankContractorSelected
   | ContractorSelected
   | InvoiceSelected;

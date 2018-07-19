@@ -7,7 +7,7 @@ import {AppState} from "../../../../reducers";
 import {Store} from "@ngrx/store";
 import {getSelectedContractor} from "../../contractor.selector";
 import {Contractor} from "../../models/contractor";
-import {ContractorSaved, InvoiceSelected, NewContractorSaved} from "../../contractor.actions";
+import {BlankContractorSelected, ContractorSaved, InvoiceSelected, NewContractorSaved} from "../../contractor.actions";
 import {Update} from "@ngrx/entity";
 import {AddInvoiceComponent} from "../add-invoice/add-invoice.component";
 import {ViewInvoicesComponent} from "../view-invoices/view-invoices.component";
@@ -60,8 +60,15 @@ export class BusinessContactEditComponent implements OnInit {
       this.contractor = contractor;
       this.setContractorForm()
     });
+  }
 
-
+  /**
+   * clear  to add new contractor
+   *
+   *
+   */
+  onSetToAddNewContractor(){
+    this.store.dispatch(new BlankContractorSelected());
   }
 
   /**
