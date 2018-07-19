@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
 import {ContractorService} from "../../service/contractor.service";
 import {Contractor} from "../../models/contractor";
 import {InvoiceLine} from "../../models/InvoiceLines";
@@ -7,6 +7,8 @@ import {ContractorInvoice} from "../../models/ContractorInvoice";
 import {AppState} from "../../../../reducers";
 import {Store} from "@ngrx/store";
 import {getSelectedContractor} from "../../contractor.selector";
+import {InvoiceSelected} from "../../contractor.actions";
+import {AddInvoiceComponent} from "../add-invoice/add-invoice.component";
 
 @Component({
   selector: 'app-view-invoices',
@@ -21,7 +23,8 @@ export class ViewInvoicesComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA)
               public data: { contractor: Contractor },
               public dialogRef: MatDialogRef<any>,
-              private store: Store<AppState>) {
+              private store: Store<AppState>,
+              private matDialog: MatDialog) {
 
   }
 
@@ -38,6 +41,23 @@ export class ViewInvoicesComponent implements OnInit {
 
   onClose() {
     this.dialogRef.close();
+  }
+
+  /**
+   * select invoice to edit
+   *
+   *
+   * @param {ContractorInvoice} invoice
+   */
+  onEdit(invoice: ContractorInvoice){
+    this.store.dispatch( new InvoiceSelected({invoice}));
+    this.dialogRef.close();
+    this.matDialog.open(AddInvoiceComponent, {
+      data: {
+      },
+      width: '85%',
+      disableClose: true
+    });
   }
 
   private calcInvoiceTotals() {

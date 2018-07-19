@@ -24,7 +24,7 @@
               Description
             </mat-header-cell>
             <mat-cell *matCellDef="let element" style="text-align:left">
-              {{element.description}}
+              <button mat-button (click)="onEdit(element)">{{element.description}}</button>
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="total">

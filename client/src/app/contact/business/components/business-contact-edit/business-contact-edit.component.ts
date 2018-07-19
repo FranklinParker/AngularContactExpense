@@ -79,7 +79,6 @@ export class BusinessContactEditComponent implements OnInit {
     this.store.dispatch(new InvoiceSelected({invoice}));
     this.matDialog.open(AddInvoiceComponent, {
       data: {
-        contractor: this.contractor
       },
       width: '85%',
       disableClose: true
@@ -93,7 +92,6 @@ export class BusinessContactEditComponent implements OnInit {
   onViewInvoices() {
     this.matDialog.open(ViewInvoicesComponent, {
       data: {
-        contractor: this.contractor
       },
       width: '80%',
       disableClose: true
