@@ -5,3 +5,14 @@ mat-form-field{
 mat-card{
   width: 90%;
 }
+
+.invoice-lines{
+  width: 90%;
+}
+
+
+mat-card-header{
+  color: white;
+  background-color: black;
+  alignment: center;
+}

@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header *ngIf="contractor">
-    <h2 mat-dialog-title>{{header}}</h2>
+    <h2>{{header}}</h2>
   </mat-card-header>
   <mat-card-content *ngIf="invoice">
     <div fxLayout="column"
@@ -28,62 +28,63 @@
                type="text"
                placeholder="Invoice Total">
       </mat-form-field>
-    </div>
-    <mat-card>
-      <mat-card-content>
-        <button mat-raised-button
-                (click)="onAddInvoiceLine()">Add Invoice Line
-        </button>
-        <mat-table #table [dataSource]="dataSource">
-          <ng-container matColumnDef="amount">
-            <mat-header-cell *matHeaderCellDef style="text-align:left;padding-left: 20px">Item amount
-            </mat-header-cell>
-            <mat-cell *matCellDef="let element" style="text-align:left">
-              <input
-                matInput
-                placeholder="Amount"
-                name="amount"
-                type="number"
-                [(ngModel)]="element.amount"
-                required>
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="itemDescription">
-            <mat-header-cell *matHeaderCellDef style="text-align:left"> Item Description</mat-header-cell>
-            <mat-cell *matCellDef="let element" style="text-align:left">
-              <input
-                matInput
-                name="itemDescription"
-                type="text"
-                [(ngModel)]="element.itemDescription"
-                required>
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="delete">
-            <mat-header-cell *matHeaderCellDef style="text-align:left">
-              Delete
-            </mat-header-cell>
-            <mat-cell *matCellDef="let element" style="text-align:left">
-              <button type="button" (click)="deleteItem(element)"
-                      mat-button>Delete Item
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;">
-          </mat-row>
-        </mat-table>
-      </mat-card-content>
-    </mat-card>
-    <mat-dialog-actions>
-      <button mat-raised-button color="accent"
-              (click)="onSave()">Save</button>
-      <button mat-raised-button color="accent"
-              (click)="onClose()">Close
-      </button>
-    </mat-dialog-actions>
-  </mat-card-content>
+      <mat-card class="invoice-lines">
+        <mat-card-content>
+          <button mat-raised-button
+                  (click)="onAddInvoiceLine()">Add Invoice Line
+          </button>
+          <mat-table #table [dataSource]="dataSource">
+            <ng-container matColumnDef="amount">
+              <mat-header-cell *matHeaderCellDef style="text-align:left;padding-left: 20px">Item amount
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" style="text-align:left">
+                <input
+                  matInput
+                  placeholder="Amount"
+                  name="amount"
+                  type="number"
+                  [(ngModel)]="element.amount"
+                  required>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="itemDescription">
+              <mat-header-cell *matHeaderCellDef style="text-align:left"> Item Description</mat-header-cell>
+              <mat-cell *matCellDef="let element" style="text-align:left">
+                <input
+                  matInput
+                  name="itemDescription"
+                  type="text"
+                  [(ngModel)]="element.itemDescription"
+                  required>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef style="text-align:left">
+                Delete
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" style="text-align:left">
+                <button type="button" (click)="deleteItem(element)"
+                        mat-button>Delete Item
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
 
+        </mat-card-content>
+      </mat-card>
+      <mat-dialog-actions>
+        <button mat-raised-button color="accent"
+                (click)="onSave()">Save
+        </button>
+        <button mat-raised-button color="accent"
+                (click)="onClose()">Close
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </mat-card-content>
 </mat-card>
 
