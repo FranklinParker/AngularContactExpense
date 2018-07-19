@@ -16,10 +16,6 @@ export class AddInvoiceComponent implements OnInit {
     dateInvoice: null,
     description: null,
     invoiceLines:[
-      {
-        itemDescription: 'test',
-        amount: 50
-      }
     ]
 
   };
@@ -35,8 +31,21 @@ export class AddInvoiceComponent implements OnInit {
     this.dataSource.data = this.invoice.invoiceLines;
   }
 
+  /**
+   * Close the dialog
+   *
+   *
+   */
   onClose(){
     this.dialogRef.close();
+  }
+
+  onAddInvoiceLine(){
+    this.invoice.invoiceLines.push({
+      itemDescription: 'Description',
+      amount: 0
+    });
+    this.dataSource.data = this.invoice.invoiceLines;
   }
 
 }
