@@ -68,7 +68,9 @@ export class AddInvoiceComponent implements OnInit {
    *
    */
   async onSave() {
-    this.contractor.invoices.push(this.invoice);
+    if(this.isAddNew){
+      this.contractor.invoices.push(this.invoice);
+    }
     const result = await this.contractorService.updateExistingContractor(this.contractor);
 
     if (result.success) {
