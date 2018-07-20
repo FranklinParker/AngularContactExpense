@@ -44,9 +44,9 @@ module.exports.initRouter = (app) => {
 	app.put('/api/contact', checkAuth, apiHandler(contactController.updateContact));
 	app.get('/api/contact', checkAuth, apiHandler(contactController.getContacts));
 
-	app.post('/api/contractor', apiHandler(contractorController.saveNewContractor));
-	app.get('/api/contractor', apiHandler(contractorController.getAllContractors));
-	app.put('/api/contractor', apiHandler(contractorController.updateContractor));
+	app.post('/api/contractor', checkAuth, apiHandler(contractorController.saveNewContractor));
+	app.get('/api/contractor', checkAuth, apiHandler(contractorController.getAllContractors));
+	app.put('/api/contractor', checkAuth, apiHandler(contractorController.updateContractor));
 
 
 }

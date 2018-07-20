@@ -19,7 +19,9 @@ const routes: Routes = [
   },
   {
     path: 'business/contact',
-    component: BusinessContactHomeComponent
+    component: BusinessContactHomeComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path:'contact',
