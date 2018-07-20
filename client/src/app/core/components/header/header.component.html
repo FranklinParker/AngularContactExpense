@@ -23,7 +23,7 @@
              routerLinkActive="mat-accent">Register</a>
       </li>
     </ul>
-    <ul  fxLayout fxLayoutGap="10px" class="navigation-list-items">
+    <ul *ngIf="loggedInUser" fxLayout fxLayoutGap="10px" class="navigation-list-items">
       <li><a routerLink="/business/contact" mat-button
              routerLinkActive="mat-accent">Business Contact</a>
       </li>
