@@ -29,3 +29,15 @@ db.flightData.replaceOne({_id: ObjectId("5c391374a133542f6404b8ff")},
                            "distance": 12000,
                            "aircraft": "Airbus A380",
                            "intercontinental": true});
+db.flightData.find().forEach((data)=>{ printjson(data) });
+db.flightData.find().toArray();
+include only data distance and aircraft exclude _id
+db.flightData.find({}, {distance: 1, _id: 0, aircraft: 1});
+
+db.flightData.updateOne({_id: ObjectId("5c391374a133542f6404b8ff")},
+      {$set:{ status:{ time: 'now', onTime: false}}});
+
+
+db.flightData.updateOne({_id: ObjectId("5c391374a133542f6404b8ff")},
+      {$set:{ stops:[{ city: 'Dallas', seq: 0}, { city: 'Pittsburg', seq: 1}]}});
+
