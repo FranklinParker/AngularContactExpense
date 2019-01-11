@@ -17,4 +17,15 @@ db.flightData.insertMany([
 ]);
 
 db.flightData.updateMany({}, {$set:{ deletInd: false}});
- db.flightData.find().pretty();
+db.flightData.find().pretty();
+db.flightData.find({ intercontinental: false}).pretty();
+db.flightData.find({ distance: {$gt:10000}}).pretty();
+
+db.flightData.updateOne({_id: ObjectId("5c391374a133542f6404b8ff")}, {$set:{ delayed: true}});
+db.flightData.update({_id: ObjectId("5c391374a133542f6404b8ff")}, {$set:{ delayed: true, aircraft: 'Boeing 777'}});
+db.flightData.replaceOne({_id: ObjectId("5c391374a133542f6404b8ff")},
+                        {  "departureAirport": "MUC",
+                           "arrivalAirport": "SFO",
+                           "distance": 12000,
+                           "aircraft": "Airbus A380",
+                           "intercontinental": true});
