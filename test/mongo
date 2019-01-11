@@ -40,4 +40,26 @@ db.flightData.updateOne({_id: ObjectId("5c391374a133542f6404b8ff")},
 
 db.flightData.updateOne({_id: ObjectId("5c391374a133542f6404b8ff")},
       {$set:{ stops:[{ city: 'Dallas', seq: 0}, { city: 'Pittsburg', seq: 1}]}});
+db.flightData.find({ 'status.onTime': false}).pretty();
+
+db.flightData.find({ 'stops.city': 'Dallas'}).pretty();
+
+
+
+db.patientsData.insertMany([
+                { firstName: 'Joe', lastName: 'Smith', age: 20,
+                   histories: [
+                           { disease: 'cold', treatment: 'aspirin'},
+                           { disease: 'fever', treatment: 'bath'},
+
+                    ]},
+                { firstName: 'Jim', lastName: 'Jones', age: 40},
+                { firstName: 'Jill', lastName: 'Smith', age: 34}
+                ]);
+db.patientsData.findOne({firstName:'Joe'});
+db.patientsData.find({age:{$gt:30}}).pretty();
+db.patientsData.deleteMany({ 'histories.disease': 'cold'});
+
+
+db.patientsData.find().pretty();
 
