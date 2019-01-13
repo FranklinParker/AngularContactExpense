@@ -63,3 +63,6 @@ db.patientsData.deleteMany({ 'histories.disease': 'cold'});
 
 db.patientsData.find().pretty();
 
+
+
+
