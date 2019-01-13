@@ -1,0 +1,13 @@
+db.questions.insertOne(
+    {
+        creator: "Jim",
+        question: "How far away is the moon",
+        answers: [
+          {
+            text: 'answer one'
+          },
+          {
+            text: 'answer two'
+          }
+        ]
+    });
