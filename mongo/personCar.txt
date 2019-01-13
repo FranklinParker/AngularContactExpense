@@ -1,0 +1,1 @@
+db.persons.insertOne({ name: 'Jim', age: 40, salary: 26600});
