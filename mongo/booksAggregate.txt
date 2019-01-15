@@ -1,0 +1,19 @@
+db.authors.insertMany([
+        {
+            name: 'Jim smith',
+            age: 49
+        },
+        {
+            name: 'jill smith',
+            age: 49
+         },
+        ]);
+
+
+db.books.insertOne({ name: 'The greatest',
+                     authors: [ ObjectId("5c3d3033a133542f6404b909"),
+                                ObjectId("5c3d3033a133542f6404b90a")]
+                   });
+
+db.books.aggregate([{$lookup :{ from: 'authors', localField: 'authors',
+                    foreignField: '_id',as: 'creators'}}]).pretty();
