@@ -1,0 +1,10 @@
+use financial
+
+db.financialData.insertMany([
+                {target: 100, volume: 80},
+                {target: 100, volume: 200},
+                {target: 90, volume: 120}
+                ]);
+
+db.financialData.find({$expr: {$lt: ["$target", "$volume"]}}).pretty()
+
