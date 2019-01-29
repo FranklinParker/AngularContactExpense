@@ -1,5 +1,7 @@
 use user
 
+
+
 db.userData.insertMany([
     { name: "joe", age: 20,
         hobbies: [{ name: "Tennis", frequency: 2},
@@ -16,6 +18,25 @@ db.userData.insertMany([
                           { name: "painting", frequency: 4},
                           { name: "sailing", frequency: 5}]
      }]);
+
+db.userData.insertMany([
+    { name: "george", age: 20, phone: '8898999',
+        hobbies: [{ name: "Tennis", frequency: 2},
+                  { name: "photography", frequency: 4},
+                  { name: "painting", frequency: 5}]
+    },
+    { name: "sam", age: 20,phone: 8898999,
+            hobbies: [{ name: "Tennis", frequency: 2},
+                      { name: "photography", frequency: 4},
+                      { name: "sailing", frequency: 5}]
+    },
+    { name: "anton", age: 20,
+                hobbies: [{ name: "Tennis", frequency: 2},
+                          { name: "painting", frequency: 4},
+                          { name: "sailing", frequency: 5}]
+     }]);
+db.userData.find({phone: {$type: "number"}}).pretty();
+db.userData.find({phone: {$type: ["number", "string"]}}).pretty()
 
 db.userData.insertOne(
     { name: "jeff",
