@@ -1,0 +1,37 @@
+use user
+
+db.userData.insertMany([
+    { name: "joe", age: 20,
+        hobbies: [{ name: "Tennis", frequency: 2},
+                  { name: "photography", frequency: 4},
+                  { name: "painting", frequency: 5}]
+    },
+    { name: "jim", age: 20,
+            hobbies: [{ name: "Tennis", frequency: 2},
+                      { name: "photography", frequency: 4},
+                      { name: "sailing", frequency: 5}]
+    },
+    { name: "jill", age: 20,
+                hobbies: [{ name: "Tennis", frequency: 2},
+                          { name: "painting", frequency: 4},
+                          { name: "sailing", frequency: 5}]
+     }]);
+
+db.userData.insertOne(
+    { name: "jeff",
+        hobbies: [{ name: "Tennis", frequency: 2},
+                  { name: "golf", frequency: 4},
+                  { name: "painting", frequency: 5}]
+    });
+
+db.userData.insertOne(
+    { name: "anna", age: null,
+        hobbies: [{ name: "Tennis", frequency: 2},
+                  { name: "golf", frequency: 4},
+                  { name: "painting", frequency: 5}]
+    });
+
+db.userData.find({ age: {$exists: true}}).pretty();
+db.userData.find({ age: {$exists: true,$gt: 18 }}).pretty();
+db.userData.find({ age: {$exists: true,$ne: null }}).pretty();
+db.userData.find({ age: {$exists: true,$eq: null }}).pretty();

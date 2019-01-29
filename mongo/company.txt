@@ -1,0 +1,63 @@
+use company
+
+db.company.insertMany([
+  {
+    "_id": "ibm",
+    "name": "Ibm",
+    "city": "New york"
+  },
+  {
+      "_id": "apple",
+      "name": "Apple",
+      "city": "Cupertino"
+    },
+    {
+        "_id": "intel",
+        "name": "Intel",
+        "city": "Oakland"
+      }
+]);
+
+db.company.find().pretty();
+
+
+
+
+db.company.insertMany([
+  {
+    "_id": "starbucks",
+    "name": "Starbucks",
+    "city": "seatle"
+  },
+  {
+      "_id": "apple",
+      "name": "Apple",
+      "city": "Cupertino"
+    },
+    {
+        "_id": "amazon",
+        "name": "Amazon",
+        "city": "Seatle"
+      }
+], {ordered: false});
+
+
+db.company.insertOne(
+  {
+    "_id": "microsoft",
+    "name": "Microsort",
+    "city": "seatle"
+  },
+  {w: 1, j: true});
+
+db.company.insertOne(
+  {
+    "_id": "udemy",
+    "name": "Udemy",
+    "city": "seatle"
+  },
+  {w: 1, j: false});
+
+
+mongoimport tv-shows.json -d movieData -c movies --jsonArray --drop
+
