@@ -1,0 +1,32 @@
+mongoimport tv-shows.json -d movieData -c movies --jsonArray --drop
+
+
+db.movies.find({ runtime: {$ne: 30}}).pretty()
+
+db.movies.find({ runtime: {$lt: 40}}).pretty()
+db.movies.find({ runtime: {$lte: 40}}).pretty()
+db.movies.find({ runtime: {$gt: 40}}).pretty()
+db.movies.find({ runtime: {$gte: 40}}).pretty()
+
+db.movies.find({ “rating.average”: {$gt: 7}}).pretty()
+
+db.movies.find({"genres": ["Drama"]}).pretty()
+db.movies.find({"genres": "Drama"}).pretty()
+
+db.movies.find({ runtime: {$in: [40,30]}}).pretty()
+
+db.movies.find({ runtime: {$in: [60,120]}}).count()
+
+db.movies.find({ runtime: {$nin: [60,120]}}).count()
+
+db.movies.find({ $nor:[{"rating.average": {$gt: 7}},{"rating.average": {$lt: 3}}]}).count()
+
+db.movies.find({ $and:[{“rating.average": {$gt: 3}},{“rating.average": {$lt: 8}}]}).count()
+
+db.movies.find({"rating.average": {$gt: 3},"genres":"Drama"}).count()
+
+db.movies.find({ runtime: {$not: {$eq:60}}}).count()
+
+db.movies.find({ runtime: {$lt: 120, $gt: 30}}).count()
+
+db.movies.find({ summary: {$regex: /musical/}}).pretty()
