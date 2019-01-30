@@ -30,3 +30,16 @@ db.movies.find({ runtime: {$not: {$eq:60}}}).count()
 db.movies.find({ runtime: {$lt: 120, $gt: 30}}).count()
 
 db.movies.find({ summary: {$regex: /musical/}}).pretty()
+
+assignment
+
+db.movies.find({ $and:[{"rating.average": {$gt: 9.3}},{runtime: {$lt: 100}}]}).pretty();
+
+db.movies.find( {"genres":{$in:[ "Drama","Action"]}}).pretty()
+
+db.boxoffice.find({$expr: {$gt: ["$visitors", "$expectedVisitors"]}}).pretty()
+
+db.boxoffice.find({genre: {$all: ["action", "thriller"]}}).pretty()
+
+
+

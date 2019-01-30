@@ -56,3 +56,9 @@ db.userData.find({ age: {$exists: true}}).pretty();
 db.userData.find({ age: {$exists: true,$gt: 18 }}).pretty();
 db.userData.find({ age: {$exists: true,$ne: null }}).pretty();
 db.userData.find({ age: {$exists: true,$eq: null }}).pretty();
+
+db.userData.find({"hobbies.name":"Tennis"}).pretty()
+
+db.userData.find({"hobbies":{$size:3}}).pretty()
+
+
