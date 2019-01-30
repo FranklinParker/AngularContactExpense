@@ -61,4 +61,6 @@ db.userData.find({"hobbies.name":"Tennis"}).pretty()
 
 db.userData.find({"hobbies":{$size:3}}).pretty()
 
+db.userData.find({hobbies:{$elemMatch:{name:"golf",frequency:{$gte:3}}}}).pretty()
+
 

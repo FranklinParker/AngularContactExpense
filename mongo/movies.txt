@@ -41,5 +41,12 @@ db.boxoffice.find({$expr: {$gt: ["$visitors", "$expectedVisitors"]}}).pretty()
 
 db.boxoffice.find({genre: {$all: ["action", "thriller"]}}).pretty()
 
+assignment
+db.boxoffice.find({genre:{$size:2}}).pretty()
+
+db.boxoffice.find({"meta.aired":2018}).pretty()
+
+
+
 
 
