@@ -87,6 +87,13 @@ db.userData.updateOne({ name: 'jay'},
 { upsert:true});
 
 
+db.userData.find({$and:[{ 'hobbies.name': 'Tennis'},{'hobbies.frequency':6}]}).pretty();
+
+db.userData.updateMany({hobbies:{$elemMatch :{'name': 'Tennis', frequency:{$gte:2}}}},
+{$set:{"hobbies.$.highFrequency":true}})
+
+db.userData.find({hobbies:{$elemMatch :{'name': 'Tennis', frequency:{$gte:2}}}}).pretty()
+
 
 Assignment
 
