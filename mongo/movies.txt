@@ -51,7 +51,16 @@ db.boxoffice.find({"meta.aired":2018}).pretty()
 db.boxoffice.find({$and:[{ratings: {$gt:8}},{ratings:{$lt:10}}]}).pretty()
 
 
+const dataCursor = db.movies.find();
 
+
+dataCursor.next();
+
+dataCursor.forEach(record=>printjson(record) )
+
+
+db.movies.find().sort({'rating.average': -1}); //descending
+db.movies.find().sort({'rating.average': 1}); //ascending
 
 
 
