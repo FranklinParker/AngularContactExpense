@@ -68,3 +68,5 @@ db.userData.updateOne({ _id: ObjectId("5c50ae8fb48217f1bc8b5811")},{$set:{hobbie
 db.userData.find({'hobbies.name':'Tennis'}).pretty();
 
 db.userData.updateMany({'hobbies.name':'Tennis'}, {$set: { isTennis:true}})
+
+db.userData.updateOne({ _id: ObjectId("5c50ae8fb48217f1bc8b5811")},{$inc:{age:10},$set:{ phone: 9999}});
