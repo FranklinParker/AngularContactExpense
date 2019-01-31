@@ -88,5 +88,19 @@ db.userData.updateOne({ name: 'jay'},
 
 
 
+Assignment
+
+db.sports.updateOne({ title: 'tennis'},
+          {$set:{ requiresTeam: false}},
+          { upsert:true});
+db.sports.updateOne({ title: 'football'},
+          {$set:{ requiresTeam: true}},
+          { upsert:true});
+
+db.sports.updateMany({ requiresTeam: true}, {$set: { minPlayers:5}});
+
+db.sports.updateMany({ requiresTeam: true}, {$inc: { minPlayers:10}})
+
+
 
 
