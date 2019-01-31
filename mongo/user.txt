@@ -82,6 +82,11 @@ db.userData.updateMany({'hobbies.name':'Tennis'}, {$unset: {phone: ""}})
 
 db.userData.updateMany({}, {$rename: {phone: "homePhone"}})
 
+db.userData.updateOne({ name: 'jay'},
+{$set:{ age:56, hobbies:[{name:'Chinese', frequency:6}, {name:'Sailing', frequency:4}]}},
+{ upsert:true});
+
+
 
 
 
