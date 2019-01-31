@@ -60,7 +60,19 @@ dataCursor.forEach(record=>printjson(record) )
 
 
 db.movies.find().sort({'rating.average': -1}); //descending
-db.movies.find().sort({'rating.average': 1}); //ascending
+db.movies.find().sort({'rating.average': 1, rating: -1}).skip(100).limit(2); //ascending
+
+
+db.movies.find({},{_id:0,name: 1, runtime: 1, genres: 1, rating:1, 'schedule.days': 1}).limit(1).pretty();
+db.movies.find({},{_id:0,name: 1, runtime: 1, genres: 1, rating:1, schedule: 1}).limit(1).pretty();
+
+
+db.movies.find({ genres:'Drama'},{'genres.$':1}).pretty();
+db.movies.find({ genres:'Drama'},{genres: {$elemMatch:{$eq:'Horror'}}}).pretty();
+
+db.movies.find({ genres:'Drama'},{name:1, genres: {$slice:3}}).pretty();
+
+db.movies.find({ genres:'Drama'},{name:1, genres: {$slice:[1,2]}}).pretty();
 
 
 
