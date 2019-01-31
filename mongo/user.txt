@@ -63,4 +63,8 @@ db.userData.find({"hobbies":{$size:3}}).pretty()
 
 db.userData.find({hobbies:{$elemMatch:{name:"golf",frequency:{$gte:3}}}}).pretty()
 
+db.userData.updateOne({ _id: ObjectId("5c50ae8fb48217f1bc8b5811")},{$set:{hobbies:[{name:'Chinese', frequency:6}, {name:'Sailing', frequency:4}], phone: 9999}});
 
+db.userData.find({'hobbies.name':'Tennis'}).pretty();
+
+db.userData.updateMany({'hobbies.name':'Tennis'}, {$set: { isTennis:true}})
