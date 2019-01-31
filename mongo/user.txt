@@ -76,3 +76,6 @@ db.userData.updateOne({ _id: ObjectId("5c50ae8fb48217f1bc8b5811")},{$min:{age:50
 
 db.userData.updateOne({ _id: ObjectId("5c50ae8fb48217f1bc8b5811")},{$max:{age:56}});
 
+db.userData.updateOne({ _id: ObjectId("5c50ae8fb48217f1bc8b5811")},{$mul:{age:1.5}});
+
+
