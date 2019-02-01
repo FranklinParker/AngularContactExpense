@@ -108,6 +108,11 @@ db.sports.updateMany({ requiresTeam: true}, {$set: { minPlayers:5}});
 
 db.sports.updateMany({ requiresTeam: true}, {$inc: { minPlayers:10}})
 
+db.userData.find({ age: {$gt:30}});
+
+db.userData.updateMany({ age: {$gt:30}}, {$inc: { 'hobbies.$[].frequency':-2}});
+
+
 
 
 
