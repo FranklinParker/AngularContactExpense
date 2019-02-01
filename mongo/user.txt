@@ -112,6 +112,10 @@ db.userData.find({ age: {$gt:30}});
 
 db.userData.updateMany({ age: {$gt:30}}, {$inc: { 'hobbies.$[].frequency':-2}});
 
+db.userData.updateMany({ 'hobbies.frequency': {$gt:2}}, {$set: { 'hobbies.$[el].goodFrequency':true}},
+     {arrayFilters:[{"el.frequency":{$gt:2}}]});
+
+
 
 
 
