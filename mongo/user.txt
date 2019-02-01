@@ -119,6 +119,8 @@ db.userData.updateMany({ 'hobbies.frequency': {$gt:2}}, {$set: { 'hobbies.$[el].
 db.userData.updateOne({ name: 'anna'},
           {$push:{ hobbies: {name: 'Basketball',frequency: 5}}});
 
+db.userData.updateOne({ name: 'anna'},
+          {$addToSet:{ hobbies: {name: 'Basketball',frequency: 5}}});
 
 db.userData.updateOne({ name: 'anna'},
           {$pull:{ hobbies: {name: 'Basketball'}}});
@@ -140,4 +142,6 @@ db.userData.updateOne({ name: 'anna'},
             $sort:{frequency:-1}}}});
 
 
+db.userData.deleteOne({ name: 'anna'});
 
+db.userData.deleteMany({ age:{$exists:false}, isTennis: true });
