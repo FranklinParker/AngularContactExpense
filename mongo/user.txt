@@ -120,5 +120,24 @@ db.userData.updateOne({ name: 'anna'},
           {$push:{ hobbies: {name: 'Basketball',frequency: 5}}});
 
 
+db.userData.updateOne({ name: 'anna'},
+          {$pull:{ hobbies: {name: 'Basketball'}}});
+
+db.userData.updateOne({ name: 'anna'},
+          {$pop:{ hobbies:-1 }});
+
+
+
+
+
+db.userData.updateOne({ name: 'anna'},
+          {$push:{ hobbies: {$each: [{name: 'Photography',frequency: 1},{name: 'Badmitton',frequency: 4}]}}});
+
+
+
+db.userData.updateOne({ name: 'anna'},
+          {$push:{ hobbies: {$each: [{name: 'Photography',frequency: 5},{name: 'Badmitton',frequency: 4}],
+            $sort:{frequency:-1}}}});
+
 
 
