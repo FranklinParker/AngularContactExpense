@@ -116,6 +116,8 @@ db.userData.updateMany({ 'hobbies.frequency': {$gt:2}}, {$set: { 'hobbies.$[el].
      {arrayFilters:[{"el.frequency":{$gt:2}}]});
 
 
+db.userData.updateOne({ name: 'anna'},
+          {$push:{ hobbies: {name: 'Basketball',frequency: 5}}});
 
 
 
