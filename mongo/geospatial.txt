@@ -1,0 +1,3 @@
+db.places.insertOne({name: 'Elk Glen Picnic Area Golden Gate Park  SF',
+                       location: {type: 'Point', coordinates: [-122.4828706,37.7675373]}});
+
