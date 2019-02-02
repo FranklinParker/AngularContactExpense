@@ -17,3 +17,5 @@ db.contacts.explain("executionStats").find({'dob.age': 30,gender: 'male'})
 db.contacts.explain("executionStats").find({'dob.age': 30}).sort({gender:1});
 
 db.contacts.getIndexes()
+
+db.contacts.createIndex({email:1}, {unique:true});
