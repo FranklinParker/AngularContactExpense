@@ -25,4 +25,10 @@ db.places.insertOne({name: 'Golden Gate Park Golf Course Golden Gate Park  SF',
            }
          }});
 
-db.places.createIndex({location :'2dsphere'});
+db.places.createIndex({location :'2dsphere'});                type: "Polygon" ,
+                coordinates: [ [point1,point2,point3,point4,point1]]
+             }
+           }
+         }});
+db.areas.insertOne({ name: 'Golden Gate Park', area: { type: "Polygon" ,
+                   coordinates: [ [point1,point2,point3,point4,point1]]}});
