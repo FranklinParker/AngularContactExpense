@@ -45,6 +45,9 @@ db.products.insertOne({name: 'nice man', description: 'this is a big country'})
 
 db.products.createIndex({description : 'text'});
 db.products.createIndex({description : 'text', name: 'text'});
+db.products.createIndex({description : 'text', name: 'text'},
+{default_language:'english', weights:{description:1, name:10}});
+
 
 
 db.products.find({$text:{$search:'nice'}});
