@@ -45,4 +45,4 @@ db.products.find({$text:{$search:'nice'}});
 
 db.products.find({$text:{$search:'"nice boat"'}});
 
-db.products.find({$text:{$search:'nice boat'}}, {score: {$meta:"textScore"}});
+db.products.find({$text:{$search:'nice boat'}}, {score: {$meta:"textScore"}}).sort({score: {$meta:"textScore"}}).pretty();
