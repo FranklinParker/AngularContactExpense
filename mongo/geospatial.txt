@@ -56,3 +56,7 @@ db.areas.find({ area:{
            coordinates: [ -122.4991253,37.77132]
         }
      }}});
+
+db.places.find( {
+  location: { $geoWithin: { $centerSphere: [ [ -122.4991253,37.77132 ], 1 / 6378.1] } }
+} );
