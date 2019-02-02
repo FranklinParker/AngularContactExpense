@@ -40,6 +40,9 @@ db.sessions.createIndex({createdAt: 1}, {expireAfterSeconds: 30});
 db.products.insertMany([{name: 'car', description: 'this is a nices car'},
      {name:'boat', description: 'this is a nice boat'}]);
 
- db.products.createIndex({description : 'text'});
+db.products.createIndex({description : 'text'});
+db.products.find({$text:{$search:'nice'}});
 
- db.products.find({$text:{$search:'nice'}});
+db.products.find({$text:{$search:'"nice boat"'}});
+
+db.products.find({$text:{$search:'car boat'}});
