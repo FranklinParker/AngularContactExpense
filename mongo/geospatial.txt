@@ -1,3 +1,28 @@
 db.places.insertOne({name: 'Elk Glen Picnic Area Golden Gate Park  SF',
                        location: {type: 'Point', coordinates: [-122.4828706,37.7675373]}});
 
+db.places.insertOne({name: 'East Meadow Area Golden Gate Park  SF',
+                       location: {type: 'Point', coordinates: [-122.4834538,37.7700403]}});
+
+
+db.places.insertOne({name: 'The Golden Gate Angling & Casting Club Golden Gate Park  SF',
+                       location: {type: 'Point', coordinates: [-122.4955082,37.7670657]}});
+
+
+db.places.insertOne({name: 'Golden Gate Park Golf Course Golden Gate Park  SF',
+                       location: {type: 'Point', coordinates: [-122.5044581,37.7691208]}});
+
+
+
+ db.places.find( {   location: {
+           $near: {
+             $geometry: {
+                type: "Point" ,
+                coordinates: [ -122.4991253,37.77132]
+             },
+             $maxDistance: 2000,
+             $minDistance: 10
+           }
+         }});
+
+db.places.createIndex({location :'2dsphere'});
