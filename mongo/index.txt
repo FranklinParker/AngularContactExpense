@@ -10,8 +10,13 @@ db.contacts.explain("executionStats").find({'dob.age': {$gt:20}}).count();
 db.contacts.dropIndex({'dob.age':1});
 
 db.contacts.createIndex({'dob.age':1, gender:1});
+db.contacts.dropIndex({'dob.age':1, gender:1});
+
 
 db.contacts.explain("executionStats").find({'dob.age': 30,gender: 'male'})
+
+db.contacts.explain("allPlansExecution").find({'dob.age': 30,gender: 'male'})
+
 
 
 db.contacts.explain("executionStats").find({'dob.age': 30}).sort({gender:1});
@@ -19,3 +24,22 @@ db.contacts.explain("executionStats").find({'dob.age': 30}).sort({gender:1});
 db.contacts.getIndexes()
 
 db.contacts.createIndex({email:1}, {unique:true});
+
+db.contacts.createIndex({email:1}, {unique:true, partialFilterExpression:{email:{$exists:true}}});
+
+
+db.contacts.createIndex({'dob.age':1}, {partialFilterExpression:{"dob.age":{$gt:60 }}});
+
+db.contacts.createIndex({'dob.age':1}, {partialFilterExpression:{"gender":'male'}});
+
+
+db.sessions.insertOne({data: 'ehgehe', createdAt: new Date()});
+
+db.sessions.createIndex({createdAt: 1}, {expireAfterSeconds: 30});
+
+db.products.insertMany([{name: 'car', description: 'this is a nices car'},
+     {name:'boat', description: 'this is a nice boat'}]);
+
+ db.products.createIndex({description : 'text'});
+
+ db.products.find({$text:{$search:'nice'}});
