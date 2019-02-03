@@ -60,3 +60,60 @@ db.areas.find({ area:{
 db.places.find( {
   location: { $geoWithin: { $centerSphere: [ [ -122.4991253,37.77132 ], 1 / 6378.1] } }
 } );
+
+
+Assignment
+
+1) Add three points
+
+db.places.insertOne({name: 'Museum of the City of New York',
+                       location: {type: 'Point', coordinates: [-73.9543099,40.7935794]}});
+db.places.insertOne({name: 'Lasker Rink Central Park Ny',
+                       location: {type: 'Point', coordinates: [-74.0059728,40.7127753]}});
+db.places.insertOne({name: 'Daniel Webster Monument  Central Park Ny ',
+                       location: {type: 'Point', coordinates: [-73.9827839,40.7760812]}});
+2) Query to see which points are near another point
+
+db.places.find( {   location: {
+           $near: {
+             $geometry: {
+                type: "Point" ,
+                coordinates: [ -73.9827839,40.7760812]
+             },
+             $maxDistance: 2000,
+             $minDistance: 10
+           }
+         }});
+3) Pick an area and see what points are in that area
+const ap1 = [ -122.51071,37.77135]
+
+const ap2 = [ -122.45503,37.77454]
+const ap3 = [  -122.45312,37.7664]
+
+
+const ap4 = [ -122.50883,37.76396]
+
+db.places.find( {   location: {
+           $geoWithin: {
+             $geometry: {
+                type: "Polygon" ,
+                coordinates: [ [ap1,ap2,ap3,ap4,ap1]]
+             }
+           }
+         }});
+4) store an area in a collection
+
+db.areas.insertOne({ name: 'Golden Gate Park', area: { type: "Polygon" ,
+                   coordinates: [ [point1,point2,point3,point4,point1]]}});
+
+5) pick a point and find out what areas contain that point
+
+db.areas.find({ area:{
+      $geoIntersects: {
+        $geometry: {
+           type: "Point" ,
+           coordinates: [ -122.4991253,37.77132]
+        }
+     }}});
+
+
