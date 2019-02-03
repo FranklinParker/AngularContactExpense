@@ -83,28 +83,25 @@ db.places.find( {   location: {
              $maxDistance: 2000,
              $minDistance: 10
            }
-         }});
+         }}).pretty();
 3) Pick an area and see what points are in that area
-const ap1 = [ -122.51071,37.77135]
-
-const ap2 = [ -122.45503,37.77454]
-const ap3 = [  -122.45312,37.7664]
-
-
-const ap4 = [ -122.50883,37.76396]
+const cp1 = [  -73.95807, 40.80023];
+const cp2 = [ -73.94928,40.79728];
+const cp3 = [ -73.97296,40.76435];
+const cp4 = [  -73.98152,40.76828];
 
 db.places.find( {   location: {
            $geoWithin: {
              $geometry: {
                 type: "Polygon" ,
-                coordinates: [ [ap1,ap2,ap3,ap4,ap1]]
+                coordinates: [ [cp1, cp2,cp3,cp4,cp1]]
              }
            }
          }});
 4) store an area in a collection
 
-db.areas.insertOne({ name: 'Golden Gate Park', area: { type: "Polygon" ,
-                   coordinates: [ [point1,point2,point3,point4,point1]]}});
+db.areas.insertOne({ name: 'Central Park NY', area: { type: "Polygon" ,
+                   coordinates: [ [cp1,cp2,cp3,cp4,cp1]]}});
 
 5) pick a point and find out what areas contain that point
 
@@ -112,8 +109,10 @@ db.areas.find({ area:{
       $geoIntersects: {
         $geometry: {
            type: "Point" ,
-           coordinates: [ -122.4991253,37.77132]
+           coordinates: [ -73.967744,40.779594]
         }
      }}});
+
+     ,
 
 
