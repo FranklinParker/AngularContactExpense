@@ -166,3 +166,8 @@ db.persons.aggregate([
      avgAge: { $avg: "$dob.age" }}
 ]).pretty();
 
+db.friends.aggregate([
+    { $group: { _id: { age: "$age" }, allHobbies: {$push:"$hobbies"}}}
+
+]).pretty();
+
