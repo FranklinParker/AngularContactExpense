@@ -167,7 +167,7 @@ db.persons.aggregate([
 ]).pretty();
 
 db.friends.aggregate([
-    { $group: { _id: { age: "$age" }, allHobbies: {$push:"$hobbies"}}}
-
-]).pretty();
+    { $unwind: "$hobbies" },
+    { $group: { _id: { age: "$age" }, allHobbies: { $addToSet: "$hobbies" } } }
+  ]).pretty();
 
