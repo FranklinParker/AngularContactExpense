@@ -1,0 +1,13 @@
+const session = db.getMongo().startSession();
+session.startTransaction();
+
+const userCollection = session.getDatabase('blog').users;
+const postCol = session.getDatabase('blog').posts;
+
+userCollection.insertOne({ name: 'joe'});
+postCol.insertOne({ title: 'post'});
+
+
+session.commitTransaction();
+session.abortTransaction();
+
