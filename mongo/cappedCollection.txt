@@ -1,0 +1,7 @@
+db.createCollection('capped', { capped: true, size: 1000, max:3});
+
+db.capped.insertMany([
+        { name: 'bill'},
+        {name: 'kay'}, 
+        {name: 'john'} ]);
+db.capped.find().sort({$natural:-1}).pretty();
