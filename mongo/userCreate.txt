@@ -13,3 +13,17 @@ use shop
   pwd: 'dev', roles: ['readWrite']});
 
 db.updateUser('dev',  {roles: ['readWrite',{role: 'readWrite', db:'blog'} ]})
+
+
+assigmment
+
+use admin
+
+db.createUser({ user: 'user',
+ pwd: 'pwd', roles: ['userAdminAnyDatabase']});
+
+db.auth('user', 'pwd');
+
+use customer
+ db.createUser({ user: 'dev',
+   pwd: 'dev', roles: ['readWrite',{role: 'readWrite', db:'sales'}]});
