@@ -1,0 +1,8 @@
+mongod --auth
+
+use admin
+
+db.createUser({ user: 'franklin',
+ pwd: 'franklin', roles: ['userAdminAnyDatabase']});
+
+db.auth('franklin', 'franklin');
