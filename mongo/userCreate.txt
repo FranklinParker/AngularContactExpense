@@ -6,3 +6,5 @@ db.createUser({ user: 'franklin',
  pwd: 'franklin', roles: ['userAdminAnyDatabase']});
 
 db.auth('franklin', 'franklin');
+
+ mongo -u franklin -p franklin --authenticationDatabase admin
